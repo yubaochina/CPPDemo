@@ -7,11 +7,11 @@
 #include <winsock2.h>
 #include <Ws2tcpip.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 // Link with ws2_32.lib
 #pragma comment(lib, "Ws2_32.lib")
 
-int main()
+int main(int argc, char* argv[])
 {
 
 	int iResult = 0;
@@ -20,8 +20,13 @@ int main()
 
 	SOCKET RecvSocket;
 	sockaddr_in RecvAddr;
-
-	unsigned short Port = 27015;
+	
+	if (argc < 1)
+	{
+		printf("Please input the port number of server endpoint");
+		return 0;
+	}
+	unsigned short Port = atoi(argv[1]);;
 
 	char RecvBuf[1024];
 	int BufLen = 1024;
