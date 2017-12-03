@@ -1,0 +1,491 @@
+* Build Develop Environment
+** Install Common Used Libs
+*** boost
+- Ubuntu
+sudo apt-get install libboost-all-dev
+
+* Memory Analysis
+** Data Area
+*** static area
+This shows the typical layout of a simple computer's program memory with the text, various data, and stack and heap sections.
+The .data segment contains any global or static variables which have a pre-defined value and can be modified. That is any variables that are not defined within a function (and thus can be accessed from anywhere) or are defined in a function but are defined as static so they retain their address across subsequent calls. Examples, in C, include:
+#+BEGIN_SRC C
+   int val = 3;
+   char string[] = "Hello World";
+#+END_SRC
+The values for these variables are initially stored within the read-only memory (typically within .text) and are copied into the .data segment during the start-up routine of the program.
+
+*** Stack
+- Stack overflow
+#+BEGIN_SRC C
+  #include <stdio.h>
+  void main()
+  {
+    int a[1024*3000];
+    printf("%d ",a[0]);
+  }
+#+END_SRC
+The default static size is 1M in VisualStudio
+#+RESULTS:
+- Stack can cause higher CPU  utilization
+#+BEGIN_SRC C
+  #include<stdio.h>
+  void main()
+  {
+    while(1)
+      {
+        double db[1024*200];
+      }
+  }
+#+END_SRC
+*** Heap
+malloc/free
+
+** BSS [Uninitialized data segment]
+The BSS segment, also known as uninitialized data, is usually adjacent to the data segment. The BSS segment contains all global variables and static variables that are initialized to zero or do not have explicit initialization in source code. For instance, a variable defined as *static int i;* would be contained in the BSS segment.
+** Text
+The code segment, also known as a text segment or simply as text, is where a portion of an object file or the corresponding section of the program's virtual address space that contains executable instructions is stored and is generally read-only and fixed size.
+** References
+[1] Memory Layout of C Programs: http://www.geeksforgeeks.org/memory-layout-of-c-program/
+
+* Grammer
+** Register Variable
+- Does Register variable have address?
+Q: Is this correct?
+#+BEGIN_SRC C
+     register int c=3;
+     int* pb=&c;
+#+END_SRC
+A: wrong
+
+** definition vs declaration 
+A declaration introduces an identifier and describes its type, be it a type, object, or function. A declaration is what the compiler needs to accept references to that identifier. These are declarations:
+#+BEGIN_SRC C
+extern int bar;
+extern int g(int, int);
+double f(int, double); // extern can be omitted for function declarations
+class foo; // no extern allowed for type declarations
+#+END_SRC
+A definition actually instantiates/implements this identifier. It's what the linker needs in order to link references to those entities. These are definitions corresponding to the above declarations:
+#+BEGIN_SRC C
+int bar;
+int g(int lhs, int rhs) {return lhs*rhs;}
+double f(int i, double d) {return i+d;}
+class foo {};
+#+END_SRC
+A definition can be used in the place of a declaration.
+
+An identifier can be declared as often as you want. Thus, the following is legal in C and C++:
+#+BEGIN_SRC C
+double f(int, double);
+double f(int, double);
+extern double f(int, double); // the same as the two above
+extern double f(int, double);
+#+END_SRC
+However, it must be defined exactly once. If you forget to define something that's been declared and referenced somewhere, then the linker doesn't know what to link references to and complains about a missing symbols. If you define something more than once, then the linker doesn't know which of the definitions to link references to and complains about duplicated symbols.
+
+** static
+#+BEGIN_SRC C
+#include <stdio.h>
+#include <stdlib.h>
+static int static_num = 30; //limited access privilage to only this file
+int main()
+{
+	//static
+	for (int i = 0; i < 10; i++)
+	{
+		int a = 10;
+		static int b = 11; //static local variable, initialized when compile, initialize once
+		a += 1;
+		b += 1;
+		printf("%d, %d\n", a, b);
+	}
+
+	for (int i = 0; i <= 100; i++)
+	{
+		static int res = 0;
+		res += i;
+		if(i==100)
+		{
+			printf("%d\n", res);
+		}
+	}
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+| 11,  | 12 |
+| 11,  | 13 |
+| 11,  | 14 |
+| 11,  | 15 |
+| 11,  | 16 |
+| 11,  | 17 |
+| 11,  | 18 |
+| 11,  | 19 |
+| 11,  | 20 |
+| 11,  | 21 |
+| 5050 |    |
+
+** DataType  
+*** DataType Convertion
+*** string to other datatypes
+- atof : convert string to double
+- atoi : convert string to integer
+- atoll : convert string to long integger
+- strtof : convert string to double
+- strtof : convert string to float
+- strtoll : convert sting to long integer
+- strtoul : convert string to unsigned long integer
+- strtoull : convert string to unsigned long long integer    
+*** convert int to string
+#+BEGIN_SRC C++ :exports both
+#include <string>
+#include <sstream>  
+#include <iostream>
+using namespace std;
+int main(int argc, char *argv[])
+{
+  int int_val=100;
+  stringstream strm;
+  strm<<int_val;
+  string s=strm.str();
+  cout<<s<<endl;
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+: 100
+*** Array or subset
+*** "sizeof" test
+#+BEGIN_SRC C
+#include <stdio.h>
+int main()
+{
+  int intValue=5;
+  int *pInt=&intValue;
+  printf("sizeof int pointer: %d\n",sizeof(pInt));
+
+  int int_array[6]={0};
+  printf("sizeof int array with initialization:%d \n",sizeof(int_array));
+
+  char charValue='A';
+  char* pChar=&charValue;
+  printf("sizeof char pointer: %d \n",sizeof(pChar));
+
+  char char_arr[10]={'\0'};
+  printf("sizeof char array: %d \n", sizeof(char_arr));
+}
+#+END_SRC
+
+*** How to get the length of an array
+#+BEGIN_SRC C :tangle get_array_length.cpp 
+#include <stdio.h>
+using namespace std;
+
+int main ()
+{
+  int arr[]={6,1,3,5,6,8,8,10};
+
+  int len=sizeof(arr)/sizeof(arr[0]);
+
+  printf("array size: %d", len);
+
+}
+#+END_SRC
+** Parameters in function
+#+BEGIN_SRC C
+  #include<stdio.h>
+  #include<stdlib.h>
+  int main()
+  {
+    //parameter sequence
+    int p = 5;
+    printf("%d, %d", p, ++p);
+    return 0;
+  }
+#+END_SRC
+
+#+RESULTS:
+| 6 | 6 |
+
+The seqence that puts parameters to stack is from right to left
+* Libs
+** boost
+** Lexical Cast
+ Use "boost" lib to Convert DataType
+#+BEGIN_SRC C++ :exports_both
+  #include <string>
+  #include <iostream>
+  #include "boost/lexical_cast.hpp"
+  using boost::lexical_cast;
+  using boost::bad_lexical_cast;
+  using namespace std;
+  int main(int argc, char *argv[])
+  {
+    int s=23;
+    string str=lexical_cast<string>(s);
+    cout<<"int to str: "<<str<<endl;
+
+    str="Message: "+lexical_cast<string>('A')+"="+lexical_cast<string>(34.5);
+    cout<<"char and float to str: "<<str<<endl;
+
+    array<char,64> msg=lexical_cast<array<char,64>>(23);
+    for (int i=0; i <2 ; i++) {
+      cout<<"int to char array, msg:"<<msg[i]<<endl;  
+    }
+
+
+    s=lexical_cast<int>("3456");
+    cout<<"int to string:"<<s<<endl;
+
+    try {
+      s=lexical_cast<int>("56.78");  // bad_lexical_cast
+    } catch (bad_lexical_cast &e) {
+      cout<<"Exception caught: "<<e.what()<<endl;
+    }
+    try{
+    s=lexical_cast<int>("3456yu");//bad_lexical_cast
+    }catch(bad_lexical_cast &e){
+      cout<<"Exception caught: "<<e.what()<<endl;
+    }
+    s=lexical_cast<int>("3456yu",4);
+    cout<<s<<endl;
+    return 0;
+  } 
+
+#+END_SRC
+
+#+RESULTS:
+| int       | to      | str:        | 23      |       |          |        |       |       |     |    |             |    |        |
+| char      | and     | float       | to      | str:  | Message: | A=34.5 |       |       |     |    |             |    |        |
+| int       | to      | char        | array,  | msg:2 |          |        |       |       |     |    |             |    |        |
+| int       | to      | char        | array,  | msg:3 |          |        |       |       |     |    |             |    |        |
+| int       | to      | string:3456 |         |       |          |        |       |       |     |    |             |    |        |
+| Exception | caught: | bad         | lexical | cast: | source   | type   | value | could | not | be | interpreted | as | target |
+| Exception | caught: | bad         | lexical | cast: | source   | type   | value | could | not | be | interpreted | as | target |
+| 3456      |         |             |         |       |          |        |       |       |     |    |             |    |        |
+
+** variant
+#+BEGIN_SRC C++ :exports_both
+#include <vector>
+#include <iostream>
+#include "boost/variant.hpp"
+using namespace std;
+int main(int argc, char *argv[])
+{
+  //union
+  union {int i; float f;} u;
+  u.i=34;
+  u.f=2.3;
+
+  boost::variant<int,string> u1,u2;
+  u1=2;
+  u2="hello";
+  cout<<u1<<" "<<u2<<endl;
+
+  //u1=u1*2 error
+  u1=boost::get<int>(u1)*2;
+
+  try{
+    string st=boost::get<string>(u1);  // throw exception of bad_get
+  }catch(boost::bad_get &e){
+    cout<<"Exception caught: "<<e.what()<<endl;
+  }
+  u1="good";  // u1 become a sting
+  u1=32;      // u1 become a int again
+
+  boost::variant<int,string> u3;
+  cout<<u3<<endl;
+
+  void Double(boost::variant<int,string> v);
+
+  // using visitor
+  class DoubleVisitor: public boost::static_visitor<>{
+   public:
+    void operator() (int& i) const {
+      i+=i;
+    }
+    void operator() (string& str) const{
+      str+=str;
+    }
+  };
+
+  u1=2;
+  boost::apply_visitor(DoubleVisitor(),u1);  // u1 become 4
+  u2="hello";
+  boost::apply_visitor(DoubleVisitor(),u2);  // u2 become "hellohello"
+ 
+  std::vector<boost::variant<int,string>> vec;
+  vec.push_back("good");
+  vec.push_back(23);
+  vec.push_back("bad");
+  
+  DoubleVisitor f;
+  for(auto x: vec){
+    boost::apply_visitor(f,x);
+    cout<<x<<endl;
+  }
+
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+|         2 | hello   |                 |        |       |     |       |            |
+| Exception | caught: | boost::bad_get: | failed | value | get | using | boost::get |
+|         0 |         |                 |        |       |     |       |            |
+|  goodgood |         |                 |        |       |     |       |            |
+|        46 |         |                 |        |       |     |       |            |
+|    badbad |         |                 |        |       |     |       |            |
+
+** Any
+#+BEGIN_SRC C++ :exports_both
+#include <vector>
+#include <iostream>
+#include "boost/any.hpp"
+using namespace std;
+int main(int argc, char *argv[])
+{
+  boost::any x,y,z;
+  x=string("hello");
+  x=2.3;
+  y='z';
+  z=vector<int>();
+
+  cout<<boost::any_cast<char>(y)<<endl;  // return a copy of y's data: 'z'
+  cout<<boost::any_cast<double>(x)<<endl; // return a copy of x's data: 2.3
+  try {
+    cout<<boost::any_cast<int>(x)<<endl;  // throws bad_cast_any
+  } catch (boost::bad_any_cast& e) {
+    cout<<"Exception: "<<e.what()<<endl;
+  }
+  try {
+    cout<<boost::any_cast<float>(x)<<endl;  // throws bad_any_cast  
+  } catch (boost::bad_any_cast& e) {
+    cout<<"Exception: "<<e.what()<<endl;
+  }
+
+  if(x.empty())
+    cout<<"x is empty"<<endl;
+
+  if(x.type()==typeid(char))
+    cout<<"x is char"<<endl;
+  
+  /*This is the wrong use example
+  boost::any_cast<vector<int>>(z).push_back(23);
+  int i=boost::any_cast<vector<int>>(z).back();  // crash, becase boost::any_cast<vector<int>>(z) return a copy of variable z
+  */
+  int i;
+  boost::any p=&i;
+  int* pInt=boost::any_cast<int*>(p);  // returns a pointer
+  
+  vector<boost::any> m;
+  m.push_back(2);
+  m.push_back('a');
+  m.push_back(p);
+  m.push_back(boost::any());
+
+  struct Property{
+    string name;
+    boost::any value;
+  };
+  
+  vector<Property> properties;
+  
+  return 0;
+}
+
+#+END_SRC
+
+#+RESULTS:
+| z          |                      |        |            |       |                 |
+| 2.3        |                      |        |            |       |                 |
+| Exception: | boost::bad_any_cast: | failed | conversion | using | boost::any_cast |
+| Exception: | boost::bad_any_cast: | failed | conversion | using | boost::any_cast |
+- This is a common wrong use example
+#+BEGIN_SRC C++ :exports_both
+  boost::any z;
+  z=vector<int>();
+  boost::any_cast<vector<int>>(z).push_back(23);
+  int i=boost::any_cast<vector<int>>(z).back();  // crash, becase boost::any_cast<vector<int>>(z) return a copy of variable z
+#+END_SRC
+** optional
+#+BEGIN_SRC C++ :exports_both
+#include "boost/optional.hpp"
+#include "boost/variant.hpp"
+#include <iostream>
+#include <vector>
+#include <deque>
+using namespace std;
+
+deque<char> queue;
+
+boost::optional<char>  get_async_data(){
+  if(!queue.empty())
+    return boost::optional<char>(queue.back());
+  else
+    return boost::optional<char>();
+}
+
+int main(int argc, char *argv[])
+{
+  boost::variant<nullptr_t,char> v;
+  boost::optional<char> op;  // op is uninitalized, no char is constructed
+  op='A';                    // op contains 'A'
+
+  op=get_async_data();
+  if(!op)
+    cout<<"No data is available"<<endl;
+  else
+  {
+    cout<<"op contains: "<<op.get()<<endl;  // get() will crash if op is uninitialized
+    cout<<"op contains: "<<*op<<endl;       // crash if op is uninitialized
+  }
+
+  op.reset();  // reset op uninitialized state
+  cout<<op.get_value_or('z')<<endl;  // return 'z' if op is empty
+
+  char* p =op.get_ptr();  // return null if op is empty
+
+  //optional can store any kind of data
+  struct A{string name; int value;};
+  A a;
+  cout<<"a's name: "<<a.name<<"a's value: "<<a.value<<endl;
+
+  boost::optional<A> opA0;  // constructor of A is not called
+  boost::optional<A> opA(a);  // a is copy constructed into opA
+  cout<<opA->name<<" "<<opA->value<<endl;
+
+  //Pointer
+  boost::optional<A*> opAP(&a);
+  (*opAP)->name="Bob";
+
+  //Reference
+  boost::optional<A&> opAR(a);
+  opAR->name="Bob";  // this changes a.name
+
+  //Relational Operator
+  boost::optional<int> i1(1);
+  boost::optional<int> i2(9);
+  boost::optional<int> i3;
+  if(i1<i2)
+    cout<<"i2 is bigger"<<endl;  // if both are initialized, *i1<*i2, i3 is uninitialized which is samll than the initialized value
+    
+  return 0;
+}
+
+#+END_SRC
+
+#+RESULTS:
+| No  | data  | is     | available |   |
+| z   |       |        |           |   |
+| a's | name: | a's    | value:    | 1 |
+| 1   |       |        |           |   |
+| i2  | is    | bigger |           |   |
+
+* Code optimization
+
+* reference
+1. [[http://boqian.weebly.com/][boqian's space]]
