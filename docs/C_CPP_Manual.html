@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-11-29 Wed 08:53 -->
+<!-- 2017-12-07 Thu 09:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -233,65 +233,82 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org279cdc2">1. Build Develop Environment</a>
+<li><a href="#orgcdeb075">1. Build Develop Environment</a>
 <ul>
-<li><a href="#org5b1227c">1.1. Install Common Used Libs</a>
+<li><a href="#org54e23f9">1.1. Install Common Used Libs</a>
 <ul>
-<li><a href="#org19e40d2">1.1.1. boost</a></li>
+<li><a href="#org734209f">1.1.1. boost</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc79f7d6">2. Memory Analysis</a>
+<li><a href="#orgb0eaaf2">2. Memory Layout</a>
 <ul>
-<li><a href="#orge34e881">2.1. Memory Layout of C Programs</a></li>
+<li><a href="#org73551d9">2.1. Data Area</a>
+<ul>
+<li><a href="#orgf77051c">2.1.1. static area</a></li>
+<li><a href="#org10b1b83">2.1.2. Stack</a></li>
+<li><a href="#org600a9b9">2.1.3. Heap</a></li>
 </ul>
 </li>
-<li><a href="#orgea3586f">3. Grammer</a>
-<ul>
-<li><a href="#orgc5ee6c8">3.1. definition vs declaration</a></li>
-<li><a href="#org4b13ca8">3.2. DataType</a>
-<ul>
-<li><a href="#org444dc18">3.2.1. DataType Convertion</a></li>
-<li><a href="#orgdaf4223">3.2.2. string to other datatypes</a></li>
-<li><a href="#org4e739c6">3.2.3. convert int to string</a></li>
-<li><a href="#org2aa6b2c">3.2.4. Array or subset</a></li>
-<li><a href="#org162d2e2">3.2.5. "sizeof" test</a></li>
-<li><a href="#orgd9eac3f">3.2.6. How to get the length of an array</a></li>
+<li><a href="#org6340ab1">2.2. BSS [Uninitialized data segment]</a></li>
+<li><a href="#org7e4be6d">2.3. Text</a></li>
+<li><a href="#orgc2809b8">2.4. References</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#orgc231851">4. Libs</a>
+<li><a href="#orgc1e426c">3. Memory Leak</a>
 <ul>
-<li><a href="#orgeb9937e">4.1. boost</a></li>
-<li><a href="#org72392b0">4.2. Lexical Cast</a></li>
-<li><a href="#orgfd76560">4.3. variant</a></li>
-<li><a href="#org1858c13">4.4. Any</a></li>
-<li><a href="#orgaf890ec">4.5. optional</a></li>
+<li><a href="#org807e41f">3.1. How to deallocate memory without using free() in C?</a></li>
 </ul>
 </li>
-<li><a href="#org73980b5">5. Code optimization</a>
+<li><a href="#orgb31e402">4. Grammer</a>
 <ul>
-<li><a href="#orga8d642c">5.1. Does Register variable have address?</a></li>
-<li><a href="#org0b77388">5.2. Stack overflow</a></li>
-<li><a href="#orgec73d58">5.3. Stack can cause higher CPU  utilization</a></li>
+<li><a href="#orgbc9190a">4.1. Register Variable</a></li>
+<li><a href="#org4f36c41">4.2. definition vs declaration</a></li>
+<li><a href="#org33181a1">4.3. static</a></li>
+<li><a href="#org3061600">4.4. DataType</a>
+<ul>
+<li><a href="#org899614c">4.4.1. DataType Convertion</a></li>
+<li><a href="#org6c4ad63">4.4.2. string to other datatypes</a></li>
+<li><a href="#orge1df9d1">4.4.3. convert int to string</a></li>
+<li><a href="#orge9d638a">4.4.4. Array or subset</a></li>
+<li><a href="#org7375910">4.4.5. "sizeof" test</a></li>
+<li><a href="#org17fe9c2">4.4.6. How to get the length of an array</a></li>
 </ul>
 </li>
-<li><a href="#org9005c17">6. reference</a></li>
+<li><a href="#orgc870767">4.5. Parameters in function</a></li>
+<li><a href="#org58b8921">4.6. Function Pointer</a></li>
+</ul>
+</li>
+<li><a href="#orgbfd99dd">5. 3dParty Libs</a>
+<ul>
+<li><a href="#orgb509567">5.1. boost</a></li>
+<li><a href="#orge22dc10">5.2. Lexical Cast</a></li>
+<li><a href="#org14361bf">5.3. variant</a></li>
+<li><a href="#org0988a3e">5.4. Any</a></li>
+<li><a href="#orgcca9dd2">5.5. optional</a></li>
+</ul>
+</li>
+<li><a href="#orgfb69ab2">6. Code optimization</a></li>
+<li><a href="#orgac3d273">7. Hack Technology</a>
+<ul>
+<li><a href="#orgbab14fd">7.1. DLL injection</a></li>
+</ul>
+</li>
+<li><a href="#orga971456">8. reference</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org279cdc2" class="outline-2">
-<h2 id="org279cdc2"><span class="section-number-2">1</span> Build Develop Environment</h2>
+<div id="outline-container-orgcdeb075" class="outline-2">
+<h2 id="orgcdeb075"><span class="section-number-2">1</span> Build Develop Environment</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org5b1227c" class="outline-3">
-<h3 id="org5b1227c"><span class="section-number-3">1.1</span> Install Common Used Libs</h3>
+<div id="outline-container-org54e23f9" class="outline-3">
+<h3 id="org54e23f9"><span class="section-number-3">1.1</span> Install Common Used Libs</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org19e40d2" class="outline-4">
-<h4 id="org19e40d2"><span class="section-number-4">1.1.1</span> boost</h4>
+<div id="outline-container-org734209f" class="outline-4">
+<h4 id="org734209f"><span class="section-number-4">1.1.1</span> boost</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li>Ubuntu</li>
@@ -304,89 +321,262 @@ sudo apt-get install libboost-all-dev
 </div>
 </div>
 
-<div id="outline-container-orgc79f7d6" class="outline-2">
-<h2 id="orgc79f7d6"><span class="section-number-2">2</span> Memory Analysis</h2>
+<div id="outline-container-orgb0eaaf2" class="outline-2">
+<h2 id="orgb0eaaf2"><span class="section-number-2">2</span> Memory Layout</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orge34e881" class="outline-3">
-<h3 id="orge34e881"><span class="section-number-3">2.1</span> Memory Layout of C Programs</h3>
+<div id="outline-container-org73551d9" class="outline-3">
+<h3 id="org73551d9"><span class="section-number-3">2.1</span> Data Area</h3>
 <div class="outline-text-3" id="text-2-1">
-<p>
-reference: <a href="http://www.geeksforgeeks.org/memory-layout-of-c-program/">http://www.geeksforgeeks.org/memory-layout-of-c-program/</a>
-</p>
-
-<ul class="org-ul">
-<li>Stack</li>
-</ul>
-<p>
-size default: 1M
-</p>
-
-<ul class="org-ul">
-<li>Heap</li>
-</ul>
-<p>
-malloc/free
-</p>
-
-<ul class="org-ul">
-<li>BSS [Uninitialized data segment]</li>
-</ul>
-<p>
-The BSS segment, also known as uninitialized data, is usually adjacent to the data segment. The BSS segment contains all global variables and static variables that are initialized to zero or do not have explicit initialization in source code. For instance, a variable defined as <b>static int i;</b> would be contained in the BSS segment.
-</p>
-
-<ul class="org-ul">
-<li>Data [nitialized data segment]</li>
-</ul>
+</div>
+<div id="outline-container-orgf77051c" class="outline-4">
+<h4 id="orgf77051c"><span class="section-number-4">2.1.1</span> static area</h4>
+<div class="outline-text-4" id="text-2-1-1">
 <p>
 This shows the typical layout of a simple computer's program memory with the text, various data, and stack and heap sections.
 The .data segment contains any global or static variables which have a pre-defined value and can be modified. That is any variables that are not defined within a function (and thus can be accessed from anywhere) or are defined in a function but are defined as static so they retain their address across subsequent calls. Examples, in C, include:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">val</span> = <span style="color: #a45bad;">3</span>;
-<span style="color: #ce537a; font-weight: bold;">char</span> <span style="color: #7590db;">string</span><span style="color: #4f97d7;">[]</span> = <span style="color: #2d9574;">"Hello World"</span>;
+<pre class="src src-C"><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">val</span> = <span style="color: #d75fd7;">3</span>;
+<span style="color: #df005f; font-weight: bold;">char</span> <span style="color: #8787d7;">string</span><span style="color: #268bd2;">[]</span> = <span style="color: #2aa198;">"Hello World"</span>;
 </pre>
 </div>
 <p>
 The values for these variables are initially stored within the read-only memory (typically within .text) and are copied into the .data segment during the start-up routine of the program.
 </p>
+</div>
+</div>
 
+<div id="outline-container-org10b1b83" class="outline-4">
+<h4 id="org10b1b83"><span class="section-number-4">2.1.2</span> Stack</h4>
+<div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
-<li>Text</li>
+<li>Stack overflow</li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdio.h</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #df005f; font-weight: bold;">void</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">()</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">a</span><span style="color: #d75fd7;">[</span><span style="color: #d75fd7;">1024</span>*<span style="color: #d75fd7;">3000</span><span style="color: #d75fd7;">]</span>;
+  printf<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"%d "</span>,a<span style="color: #2aa198;">[</span><span style="color: #d75fd7;">0</span><span style="color: #2aa198;">]</span><span style="color: #d75fd7;">)</span>;
+<span style="color: #268bd2;">}</span>
+</pre>
+</div>
+<p>
+The default static size is 1M in VisualStudio
+</p>
+<ul class="org-ul">
+<li>Stack can cause higher CPU  utilization</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #d75fd7;">#include</span><span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdio.h</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #df005f; font-weight: bold;">void</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">()</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #268bd2; font-weight: bold;">while</span><span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">1</span><span style="color: #d75fd7;">)</span>
+    <span style="color: #d75fd7;">{</span>
+      <span style="color: #df005f; font-weight: bold;">double</span> <span style="color: #8787d7;">db</span><span style="color: #2aa198;">[</span><span style="color: #d75fd7;">1024</span>*<span style="color: #d75fd7;">200</span><span style="color: #2aa198;">]</span>;
+    <span style="color: #d75fd7;">}</span>
+<span style="color: #268bd2;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org600a9b9" class="outline-4">
+<h4 id="org600a9b9"><span class="section-number-4">2.1.3</span> Heap</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+malloc/free
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6340ab1" class="outline-3">
+<h3 id="org6340ab1"><span class="section-number-3">2.2</span> BSS [Uninitialized data segment]</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The BSS segment, also known as uninitialized data, is usually adjacent to the data segment. The BSS segment contains all global variables and static variables that are initialized to zero or do not have explicit initialization in source code. For instance, a variable defined as <b>static int i;</b> would be contained in the BSS segment.
+</p>
+</div>
+</div>
+<div id="outline-container-org7e4be6d" class="outline-3">
+<h3 id="org7e4be6d"><span class="section-number-3">2.3</span> Text</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
 The code segment, also known as a text segment or simply as text, is where a portion of an object file or the corresponding section of the program's virtual address space that contains executable instructions is stored and is generally read-only and fixed size.
 </p>
 </div>
 </div>
+<div id="outline-container-orgc2809b8" class="outline-3">
+<h3 id="orgc2809b8"><span class="section-number-3">2.4</span> References</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+[1] Memory Layout of C Programs: <a href="http://www.geeksforgeeks.org/memory-layout-of-c-program/">http://www.geeksforgeeks.org/memory-layout-of-c-program/</a>
+</p>
 </div>
-
-<div id="outline-container-orgea3586f" class="outline-2">
-<h2 id="orgea3586f"><span class="section-number-2">3</span> Grammer</h2>
+</div>
+</div>
+<div id="outline-container-orgc1e426c" class="outline-2">
+<h2 id="orgc1e426c"><span class="section-number-2">3</span> Memory Leak</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgc5ee6c8" class="outline-3">
-<h3 id="orgc5ee6c8"><span class="section-number-3">3.1</span> definition vs declaration</h3>
+<div id="outline-container-org807e41f" class="outline-3">
+<h3 id="org807e41f"><span class="section-number-3">3.1</span> How to deallocate memory without using free() in C?</h3>
 <div class="outline-text-3" id="text-3-1">
+<p>
+For detail: <a href="http://www.geeksforgeeks.org/how-to-deallocate-memory-without-using-free-in-c/">http://www.geeksforgeeks.org/how-to-deallocate-memory-without-using-free-in-c/</a>
+</p>
+
+<p>
+<b>Question</b>: How to deallocate dynamically allocate memory without using “free()” function.
+</p>
+
+<p>
+<b>Solution</b>: Standard library function realloc() can be used to deallocate previously allocated memory. Below is function declaration of “realloc()” from “stdlib.h”
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #df005f; font-weight: bold;">void</span> *<span style="color: #d75fd7; font-weight: bold;">realloc</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">void</span> *<span style="color: #8787d7;">ptr</span>, <span style="color: #df005f; font-weight: bold;">size_t</span> <span style="color: #8787d7;">size</span><span style="color: #268bd2;">)</span>;
+</pre>
+</div>
+
+<p>
+If “size” is zero, then call to realloc is equivalent to “free(ptr)”. And if “ptr” is NULL and size is non-zero then call to realloc is equivalent to “malloc(size)”.
+</p>
+
+<p>
+Let us check with simple example.
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #008787; background-color: #262626;">/* </span><span style="color: #008787; background-color: #262626;">code with memory leak </span><span style="color: #008787; background-color: #262626;">*/</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdio.h</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdlib.h</span><span style="color: #268bd2;">&gt;</span>
+
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">void</span><span style="color: #268bd2;">)</span>
+<span style="color: #268bd2;">{</span>
+    <span style="color: #df005f; font-weight: bold;">int</span> *<span style="color: #8787d7;">ptr</span> = <span style="color: #d75fd7;">(</span><span style="color: #df005f; font-weight: bold;">int</span>*<span style="color: #d75fd7;">)</span>malloc<span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">10</span><span style="color: #d75fd7;">)</span>;
+
+    <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">0</span>;
+<span style="color: #268bd2;">}</span>
+</pre>
+</div>
+<p>
+Check the leak summary with valgrind tool. It shows memory leak of 10 bytes, which is highlighed in red colour.
+</p>
+<div class="org-src-container">
+<pre class="src src-Shell">yubao@yubao-ThinkPad-E560:~/MyProjects/C_CPP_Ref/C_CPP_Lang/api_test$ valgrind --leak-check=full ./realoc_free 
+==11690== Memcheck, a memory error detector
+==11690== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==11690== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info
+==11690== Command: ./realoc_free
+==11690== 
+==11690== 
+==11690== HEAP SUMMARY:
+==11690==     in use at exit: 10 bytes in 1 blocks
+==11690==   total heap usage: 1 allocs, 0 frees, 10 bytes allocated
+==11690== 
+==11690== 10 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==11690==    at 0x4C2DB2F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11690==    by 0x1086B1: main (in /home/yubao/MyProjects/C_CPP_Ref/C_CPP_Lang/api_test/realoc_free)
+==11690== 
+==11690== LEAK SUMMARY:
+==11690==    definitely lost: 10 bytes in 1 blocks
+==11690==    indirectly lost: 0 bytes in 0 blocks
+==11690==      possibly lost: 0 bytes in 0 blocks
+==11690==    still reachable: 0 bytes in 0 blocks
+==11690==         suppressed: 0 bytes in 0 blocks
+==11690== 
+==11690== For counts of detected and suppressed errors, rerun with: -v
+==11690== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+</pre>
+</div>
+<p>
+Let us modify the above code.
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdio.h</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdlib.h</span><span style="color: #268bd2;">&gt;</span>
+
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">void</span><span style="color: #268bd2;">)</span>
+<span style="color: #268bd2;">{</span>
+    <span style="color: #df005f; font-weight: bold;">int</span> *<span style="color: #8787d7;">ptr</span> = <span style="color: #d75fd7;">(</span><span style="color: #df005f; font-weight: bold;">int</span>*<span style="color: #d75fd7;">)</span> malloc<span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">10</span><span style="color: #d75fd7;">)</span>;
+
+    <span style="color: #008787; background-color: #262626;">/* </span><span style="color: #008787; background-color: #262626;">we are calling realloc with size = 0 </span><span style="color: #008787; background-color: #262626;">*/</span>
+    realloc<span style="color: #d75fd7;">(</span>ptr, <span style="color: #d75fd7;">0</span><span style="color: #d75fd7;">)</span>;
+
+
+    <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">0</span>;
+<span style="color: #268bd2;">}</span>
+</pre>
+</div>
+<p>
+Check the valgrind’s output. It shows no memory leaks are possible, highlighted in red color.
+</p>
+<div class="org-src-container">
+<pre class="src src-Shell">yubao@yubao-ThinkPad-E560:~/MyProjects/C_CPP_Ref/C_CPP_Lang/api_test$ valgrind --leak-check=full ./realoc_free 
+==12069== Memcheck, a memory error detector
+==12069== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==12069== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info
+==12069== Command: ./realoc_free
+==12069== 
+==12069== 
+==12069== HEAP SUMMARY:
+==12069==     in use at exit: 0 bytes in 0 blocks
+==12069==   total heap usage: 1 allocs, 1 frees, 10 bytes allocated
+==12069== 
+==12069== All heap blocks were freed -- no leaks are possible
+==12069== 
+==12069== For counts of detected and suppressed errors, rerun with: -v
+==12069== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb31e402" class="outline-2">
+<h2 id="orgb31e402"><span class="section-number-2">4</span> Grammer</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgbc9190a" class="outline-3">
+<h3 id="orgbc9190a"><span class="section-number-3">4.1</span> Register Variable</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Does Register variable have address?</li>
+</ul>
+<p>
+Q: Is this correct?
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #268bd2; font-weight: bold;">register</span> <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">c</span>=<span style="color: #d75fd7;">3</span>;
+<span style="color: #df005f; font-weight: bold;">int</span>* <span style="color: #8787d7;">pb</span>=&amp;c;
+</pre>
+</div>
+<p>
+A: wrong
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4f36c41" class="outline-3">
+<h3 id="org4f36c41"><span class="section-number-3">4.2</span> definition vs declaration</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 A declaration introduces an identifier and describes its type, be it a type, object, or function. A declaration is what the compiler needs to accept references to that identifier. These are declarations:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #4f97d7; font-weight: bold;">extern</span> <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">bar</span>;
-<span style="color: #4f97d7; font-weight: bold;">extern</span> <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #bc6ec5; font-weight: bold;">g</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span>, <span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #4f97d7;">)</span>;
-<span style="color: #ce537a; font-weight: bold;">double</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span>, <span style="color: #ce537a; font-weight: bold;">double</span><span style="color: #4f97d7;">)</span>; <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">extern can be omitted for function declarations</span>
-<span style="color: #ce537a; font-weight: bold;">class</span> <span style="color: #7590db;">foo</span>; <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">no extern allowed for type declarations</span>
+<pre class="src src-C"><span style="color: #268bd2; font-weight: bold;">extern</span> <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">bar</span>;
+<span style="color: #268bd2; font-weight: bold;">extern</span> <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">g</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span>, <span style="color: #df005f; font-weight: bold;">int</span><span style="color: #268bd2;">)</span>;
+<span style="color: #df005f; font-weight: bold;">double</span> <span style="color: #d75fd7; font-weight: bold;">f</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span>, <span style="color: #df005f; font-weight: bold;">double</span><span style="color: #268bd2;">)</span>; <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">extern can be omitted for function declarations</span>
+<span style="color: #df005f; font-weight: bold;">class</span> <span style="color: #8787d7;">foo</span>; <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">no extern allowed for type declarations</span>
 </pre>
 </div>
 <p>
 A definition actually instantiates/implements this identifier. It's what the linker needs in order to link references to those entities. These are definitions corresponding to the above declarations:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">bar</span>;
-<span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #bc6ec5; font-weight: bold;">g</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">lhs</span>, <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">rhs</span><span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">return</span> lhs*rhs;<span style="color: #4f97d7;">}</span>
-<span style="color: #ce537a; font-weight: bold;">double</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">i</span>, <span style="color: #ce537a; font-weight: bold;">double</span> <span style="color: #7590db;">d</span><span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">return</span> i+d;<span style="color: #4f97d7;">}</span>
-<span style="color: #ce537a; font-weight: bold;">class</span> <span style="color: #7590db;">foo</span> <span style="color: #4f97d7;">{}</span>;
+<pre class="src src-C"><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">bar</span>;
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">g</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">lhs</span>, <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">rhs</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span><span style="color: #268bd2; font-weight: bold;">return</span> lhs*rhs;<span style="color: #268bd2;">}</span>
+<span style="color: #df005f; font-weight: bold;">double</span> <span style="color: #d75fd7; font-weight: bold;">f</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">i</span>, <span style="color: #df005f; font-weight: bold;">double</span> <span style="color: #8787d7;">d</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span><span style="color: #268bd2; font-weight: bold;">return</span> i+d;<span style="color: #268bd2;">}</span>
+<span style="color: #df005f; font-weight: bold;">class</span> <span style="color: #8787d7;">foo</span> <span style="color: #268bd2;">{}</span>;
 </pre>
 </div>
 <p>
@@ -397,10 +587,10 @@ A definition can be used in the place of a declaration.
 An identifier can be declared as often as you want. Thus, the following is legal in C and C++:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #ce537a; font-weight: bold;">double</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span>, <span style="color: #ce537a; font-weight: bold;">double</span><span style="color: #4f97d7;">)</span>;
-<span style="color: #ce537a; font-weight: bold;">double</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span>, <span style="color: #ce537a; font-weight: bold;">double</span><span style="color: #4f97d7;">)</span>;
-<span style="color: #4f97d7; font-weight: bold;">extern</span> <span style="color: #ce537a; font-weight: bold;">double</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span>, <span style="color: #ce537a; font-weight: bold;">double</span><span style="color: #4f97d7;">)</span>; <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">the same as the two above</span>
-<span style="color: #4f97d7; font-weight: bold;">extern</span> <span style="color: #ce537a; font-weight: bold;">double</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span>, <span style="color: #ce537a; font-weight: bold;">double</span><span style="color: #4f97d7;">)</span>;
+<pre class="src src-C"><span style="color: #df005f; font-weight: bold;">double</span> <span style="color: #d75fd7; font-weight: bold;">f</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span>, <span style="color: #df005f; font-weight: bold;">double</span><span style="color: #268bd2;">)</span>;
+<span style="color: #df005f; font-weight: bold;">double</span> <span style="color: #d75fd7; font-weight: bold;">f</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span>, <span style="color: #df005f; font-weight: bold;">double</span><span style="color: #268bd2;">)</span>;
+<span style="color: #268bd2; font-weight: bold;">extern</span> <span style="color: #df005f; font-weight: bold;">double</span> <span style="color: #d75fd7; font-weight: bold;">f</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span>, <span style="color: #df005f; font-weight: bold;">double</span><span style="color: #268bd2;">)</span>; <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">the same as the two above</span>
+<span style="color: #268bd2; font-weight: bold;">extern</span> <span style="color: #df005f; font-weight: bold;">double</span> <span style="color: #d75fd7; font-weight: bold;">f</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span>, <span style="color: #df005f; font-weight: bold;">double</span><span style="color: #268bd2;">)</span>;
 </pre>
 </div>
 <p>
@@ -409,16 +599,51 @@ However, it must be defined exactly once. If you forget to define something that
 </div>
 </div>
 
-<div id="outline-container-org4b13ca8" class="outline-3">
-<h3 id="org4b13ca8"><span class="section-number-3">3.2</span> DataType</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org33181a1" class="outline-3">
+<h3 id="org33181a1"><span class="section-number-3">4.3</span> static</h3>
+<div class="outline-text-3" id="text-4-3">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdio.h</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdlib.h</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">static</span> <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">static_num</span> = <span style="color: #d75fd7;">30</span>; <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">limited access privilage to only this file</span>
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">()</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">static</span>
+  <span style="color: #268bd2; font-weight: bold;">for</span> <span style="color: #d75fd7;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">i</span> = <span style="color: #d75fd7;">0</span>; i &lt; <span style="color: #d75fd7;">10</span>; i++<span style="color: #d75fd7;">)</span>
+  <span style="color: #d75fd7;">{</span>
+    <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">a</span> = <span style="color: #d75fd7;">10</span>;
+    <span style="color: #268bd2; font-weight: bold;">static</span> <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">b</span> = <span style="color: #d75fd7;">11</span>; <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">static local variable, initialized when compile, initialize once</span>
+    a += <span style="color: #d75fd7;">1</span>;
+    b += <span style="color: #d75fd7;">1</span>;
+    printf<span style="color: #2aa198;">(</span><span style="color: #2aa198;">"%d, %d\n"</span>, a, b<span style="color: #2aa198;">)</span>;
+  <span style="color: #d75fd7;">}</span>
+
+  <span style="color: #268bd2; font-weight: bold;">for</span> <span style="color: #d75fd7;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">i</span> = <span style="color: #d75fd7;">0</span>; i &lt;= <span style="color: #d75fd7;">100</span>; i++<span style="color: #d75fd7;">)</span>
+  <span style="color: #d75fd7;">{</span>
+    <span style="color: #268bd2; font-weight: bold;">static</span> <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">res</span> = <span style="color: #d75fd7;">0</span>;
+    res += i;
+    <span style="color: #268bd2; font-weight: bold;">if</span><span style="color: #2aa198;">(</span>i==<span style="color: #d75fd7;">100</span><span style="color: #2aa198;">)</span>
+    <span style="color: #2aa198;">{</span>
+      printf<span style="color: #67b11d;">(</span><span style="color: #2aa198;">"%d\n"</span>, res<span style="color: #67b11d;">)</span>;
+    <span style="color: #2aa198;">}</span>
+  <span style="color: #d75fd7;">}</span>
+  <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">0</span>;
+<span style="color: #268bd2;">}</span>
+</pre>
 </div>
-<div id="outline-container-org444dc18" class="outline-4">
-<h4 id="org444dc18"><span class="section-number-4">3.2.1</span> DataType Convertion</h4>
 </div>
-<div id="outline-container-orgdaf4223" class="outline-4">
-<h4 id="orgdaf4223"><span class="section-number-4">3.2.2</span> string to other datatypes</h4>
-<div class="outline-text-4" id="text-3-2-2">
+</div>
+
+<div id="outline-container-org3061600" class="outline-3">
+<h3 id="org3061600"><span class="section-number-3">4.4</span> DataType</h3>
+<div class="outline-text-3" id="text-4-4">
+</div>
+<div id="outline-container-org899614c" class="outline-4">
+<h4 id="org899614c"><span class="section-number-4">4.4.1</span> DataType Convertion</h4>
+</div>
+<div id="outline-container-org6c4ad63" class="outline-4">
+<h4 id="org6c4ad63"><span class="section-number-4">4.4.2</span> string to other datatypes</h4>
+<div class="outline-text-4" id="text-4-4-2">
 <ul class="org-ul">
 <li>atof : convert string to double</li>
 <li>atoi : convert string to integer</li>
@@ -431,23 +656,23 @@ However, it must be defined exactly once. If you forget to define something that
 </ul>
 </div>
 </div>
-<div id="outline-container-org4e739c6" class="outline-4">
-<h4 id="org4e739c6"><span class="section-number-4">3.2.3</span> convert int to string</h4>
-<div class="outline-text-4" id="text-3-2-3">
+<div id="outline-container-orge1df9d1" class="outline-4">
+<h4 id="orge1df9d1"><span class="section-number-4">4.4.3</span> convert int to string</h4>
+<div class="outline-text-4" id="text-4-4-3">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">string</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">sstream</span><span style="color: #4f97d7;">&gt;</span>  
-<span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">iostream</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #4f97d7; font-weight: bold;">using</span> <span style="color: #4f97d7; font-weight: bold;">namespace</span> <span style="color: #a45bad;">std</span>;
-<span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #bc6ec5; font-weight: bold;">main</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">argc</span>, <span style="color: #ce537a; font-weight: bold;">char</span> *<span style="color: #7590db;">argv</span><span style="color: #bc6ec5;">[]</span><span style="color: #4f97d7;">)</span>
-<span style="color: #4f97d7;">{</span>
-  <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">int_val</span>=<span style="color: #a45bad;">100</span>;
-  <span style="color: #ce537a; font-weight: bold;">stringstream</span> <span style="color: #7590db;">strm</span>;
+<pre class="src src-C++"><span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">string</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">sstream</span><span style="color: #268bd2;">&gt;</span>  
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">iostream</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">using</span> <span style="color: #268bd2; font-weight: bold;">namespace</span> <span style="color: #d75fd7;">std</span>;
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">argc</span>, <span style="color: #df005f; font-weight: bold;">char</span> *<span style="color: #8787d7;">argv</span><span style="color: #d75fd7;">[]</span><span style="color: #268bd2;">)</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">int_val</span>=<span style="color: #d75fd7;">100</span>;
+  <span style="color: #df005f; font-weight: bold;">stringstream</span> <span style="color: #8787d7;">strm</span>;
   strm&lt;&lt;int_val;
-  <span style="color: #ce537a; font-weight: bold;">string</span> <span style="color: #7590db;">s</span>=strm.str<span style="color: #bc6ec5;">()</span>;
+  <span style="color: #df005f; font-weight: bold;">string</span> <span style="color: #8787d7;">s</span>=strm.str<span style="color: #d75fd7;">()</span>;
   cout&lt;&lt;s&lt;&lt;endl;
-  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">0</span>;
-<span style="color: #4f97d7;">}</span>
+  <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">0</span>;
+<span style="color: #268bd2;">}</span>
 </pre>
 </div>
 
@@ -457,243 +682,287 @@ However, it must be defined exactly once. If you forget to define something that
 </pre>
 </div>
 </div>
-<div id="outline-container-org2aa6b2c" class="outline-4">
-<h4 id="org2aa6b2c"><span class="section-number-4">3.2.4</span> Array or subset</h4>
+<div id="outline-container-orge9d638a" class="outline-4">
+<h4 id="orge9d638a"><span class="section-number-4">4.4.4</span> Array or subset</h4>
 </div>
-<div id="outline-container-org162d2e2" class="outline-4">
-<h4 id="org162d2e2"><span class="section-number-4">3.2.5</span> "sizeof" test</h4>
-<div class="outline-text-4" id="text-3-2-5">
+<div id="outline-container-org7375910" class="outline-4">
+<h4 id="org7375910"><span class="section-number-4">4.4.5</span> "sizeof" test</h4>
+<div class="outline-text-4" id="text-4-4-5">
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">stdio.h</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #bc6ec5; font-weight: bold;">main</span><span style="color: #4f97d7;">()</span>
-<span style="color: #4f97d7;">{</span>
-  <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">intValue</span>=<span style="color: #a45bad;">5</span>;
-  <span style="color: #ce537a; font-weight: bold;">int</span> *<span style="color: #7590db;">pInt</span>=&amp;intValue;
-  printf<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"sizeof int pointer: %d\n"</span>,<span style="color: #4f97d7; font-weight: bold;">sizeof</span><span style="color: #2d9574;">(</span>pInt<span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span>;
+<pre class="src src-C"><span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdio.h</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">()</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">intValue</span>=<span style="color: #d75fd7;">5</span>;
+  <span style="color: #df005f; font-weight: bold;">int</span> *<span style="color: #8787d7;">pInt</span>=&amp;intValue;
+  printf<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"sizeof int pointer: %d\n"</span>,<span style="color: #268bd2; font-weight: bold;">sizeof</span><span style="color: #2aa198;">(</span>pInt<span style="color: #2aa198;">)</span><span style="color: #d75fd7;">)</span>;
 
-  <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">int_array</span><span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">6</span><span style="color: #bc6ec5;">]</span>=<span style="color: #bc6ec5;">{</span><span style="color: #a45bad;">0</span><span style="color: #bc6ec5;">}</span>;
-  printf<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"sizeof int array with initialization:%d \n"</span>,<span style="color: #4f97d7; font-weight: bold;">sizeof</span><span style="color: #2d9574;">(</span>int_array<span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span>;
+  <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">int_array</span><span style="color: #d75fd7;">[</span><span style="color: #d75fd7;">6</span><span style="color: #d75fd7;">]</span>=<span style="color: #d75fd7;">{</span><span style="color: #d75fd7;">0</span><span style="color: #d75fd7;">}</span>;
+  printf<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"sizeof int array with initialization:%d \n"</span>,<span style="color: #268bd2; font-weight: bold;">sizeof</span><span style="color: #2aa198;">(</span>int_array<span style="color: #2aa198;">)</span><span style="color: #d75fd7;">)</span>;
 
-  <span style="color: #ce537a; font-weight: bold;">char</span> <span style="color: #7590db;">charValue</span>=<span style="color: #2d9574;">'A'</span>;
-  <span style="color: #ce537a; font-weight: bold;">char</span>* <span style="color: #7590db;">pChar</span>=&amp;charValue;
-  printf<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"sizeof char pointer: %d \n"</span>,<span style="color: #4f97d7; font-weight: bold;">sizeof</span><span style="color: #2d9574;">(</span>pChar<span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span>;
+  <span style="color: #df005f; font-weight: bold;">char</span> <span style="color: #8787d7;">charValue</span>=<span style="color: #2aa198;">'A'</span>;
+  <span style="color: #df005f; font-weight: bold;">char</span>* <span style="color: #8787d7;">pChar</span>=&amp;charValue;
+  printf<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"sizeof char pointer: %d \n"</span>,<span style="color: #268bd2; font-weight: bold;">sizeof</span><span style="color: #2aa198;">(</span>pChar<span style="color: #2aa198;">)</span><span style="color: #d75fd7;">)</span>;
 
-  <span style="color: #ce537a; font-weight: bold;">char</span> <span style="color: #7590db;">char_arr</span><span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">10</span><span style="color: #bc6ec5;">]</span>=<span style="color: #bc6ec5;">{</span><span style="color: #2d9574;">'\0'</span><span style="color: #bc6ec5;">}</span>;
-  printf<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"sizeof char array: %d \n"</span>, <span style="color: #4f97d7; font-weight: bold;">sizeof</span><span style="color: #2d9574;">(</span>char_arr<span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span>;
-<span style="color: #4f97d7;">}</span>
+  <span style="color: #df005f; font-weight: bold;">char</span> <span style="color: #8787d7;">char_arr</span><span style="color: #d75fd7;">[</span><span style="color: #d75fd7;">10</span><span style="color: #d75fd7;">]</span>=<span style="color: #d75fd7;">{</span><span style="color: #2aa198;">'\0'</span><span style="color: #d75fd7;">}</span>;
+  printf<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"sizeof char array: %d \n"</span>, <span style="color: #268bd2; font-weight: bold;">sizeof</span><span style="color: #2aa198;">(</span>char_arr<span style="color: #2aa198;">)</span><span style="color: #d75fd7;">)</span>;
+<span style="color: #268bd2;">}</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd9eac3f" class="outline-4">
-<h4 id="orgd9eac3f"><span class="section-number-4">3.2.6</span> How to get the length of an array</h4>
-<div class="outline-text-4" id="text-3-2-6">
+<div id="outline-container-org17fe9c2" class="outline-4">
+<h4 id="org17fe9c2"><span class="section-number-4">4.4.6</span> How to get the length of an array</h4>
+<div class="outline-text-4" id="text-4-4-6">
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">stdio.h</span><span style="color: #4f97d7;">&gt;</span>
-using <span style="color: #ce537a; font-weight: bold;">namespace</span> <span style="color: #7590db;">std</span>;
+<pre class="src src-C"><span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdio.h</span><span style="color: #268bd2;">&gt;</span>
+using <span style="color: #df005f; font-weight: bold;">namespace</span> <span style="color: #8787d7;">std</span>;
 
-<span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #bc6ec5; font-weight: bold;">main</span> <span style="color: #4f97d7;">()</span>
-<span style="color: #4f97d7;">{</span>
-  <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">arr</span><span style="color: #bc6ec5;">[]</span>=<span style="color: #bc6ec5;">{</span><span style="color: #a45bad;">6</span>,<span style="color: #a45bad;">1</span>,<span style="color: #a45bad;">3</span>,<span style="color: #a45bad;">5</span>,<span style="color: #a45bad;">6</span>,<span style="color: #a45bad;">8</span>,<span style="color: #a45bad;">8</span>,<span style="color: #a45bad;">10</span><span style="color: #bc6ec5;">}</span>;
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span> <span style="color: #268bd2;">()</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">arr</span><span style="color: #d75fd7;">[]</span>=<span style="color: #d75fd7;">{</span><span style="color: #d75fd7;">6</span>,<span style="color: #d75fd7;">1</span>,<span style="color: #d75fd7;">3</span>,<span style="color: #d75fd7;">5</span>,<span style="color: #d75fd7;">6</span>,<span style="color: #d75fd7;">8</span>,<span style="color: #d75fd7;">8</span>,<span style="color: #d75fd7;">10</span><span style="color: #d75fd7;">}</span>;
 
-  <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">len</span>=<span style="color: #4f97d7; font-weight: bold;">sizeof</span><span style="color: #bc6ec5;">(</span>arr<span style="color: #bc6ec5;">)</span>/<span style="color: #4f97d7; font-weight: bold;">sizeof</span><span style="color: #bc6ec5;">(</span>arr<span style="color: #2d9574;">[</span><span style="color: #a45bad;">0</span><span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">)</span>;
+  <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">len</span>=<span style="color: #268bd2; font-weight: bold;">sizeof</span><span style="color: #d75fd7;">(</span>arr<span style="color: #d75fd7;">)</span>/<span style="color: #268bd2; font-weight: bold;">sizeof</span><span style="color: #d75fd7;">(</span>arr<span style="color: #2aa198;">[</span><span style="color: #d75fd7;">0</span><span style="color: #2aa198;">]</span><span style="color: #d75fd7;">)</span>;
 
-  printf<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"array size: %d"</span>, len<span style="color: #bc6ec5;">)</span>;
+  printf<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"array size: %d"</span>, len<span style="color: #d75fd7;">)</span>;
 
-<span style="color: #4f97d7;">}</span>
+<span style="color: #268bd2;">}</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
+<div id="outline-container-orgc870767" class="outline-3">
+<h3 id="orgc870767"><span class="section-number-3">4.5</span> Parameters in function</h3>
+<div class="outline-text-3" id="text-4-5">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #d75fd7;">#include</span><span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdio.h</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span><span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdlib.h</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">()</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">parameter sequence</span>
+  <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">p</span> = <span style="color: #d75fd7;">5</span>;
+  printf<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"%d, %d"</span>, p, ++p<span style="color: #d75fd7;">)</span>;
+  <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">0</span>;
+<span style="color: #268bd2;">}</span>
+</pre>
 </div>
-<div id="outline-container-orgc231851" class="outline-2">
-<h2 id="orgc231851"><span class="section-number-2">4</span> Libs</h2>
-<div class="outline-text-2" id="text-4">
+
+<p>
+The seqence that puts parameters to stack is from right to left
+</p>
 </div>
-<div id="outline-container-orgeb9937e" class="outline-3">
-<h3 id="orgeb9937e"><span class="section-number-3">4.1</span> boost</h3>
 </div>
-<div id="outline-container-org72392b0" class="outline-3">
-<h3 id="org72392b0"><span class="section-number-3">4.2</span> Lexical Cast</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-org58b8921" class="outline-3">
+<h3 id="org58b8921"><span class="section-number-3">4.6</span> Function Pointer</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+Function Pointer is pointers to functions. Following is an example:
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #d75fd7;">#include</span><span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">stdio.h</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #df005f; font-weight: bold;">void</span> <span style="color: #d75fd7; font-weight: bold;">func</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">a</span><span style="color: #268bd2;">)</span>
+<span style="color: #268bd2;">{</span>
+  printf<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"Value in func is %d \n"</span>,a<span style="color: #d75fd7;">)</span>;
+<span style="color: #268bd2;">}</span>
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">()</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #df005f; font-weight: bold;">void</span> <span style="color: #d75fd7;">(</span>*<span style="color: #d75fd7; font-weight: bold;">func_ptr</span><span style="color: #d75fd7;">)(</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">)</span>=func;
+  func<span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">10</span><span style="color: #d75fd7;">)</span>;
+  func_ptr<span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">100</span><span style="color: #d75fd7;">)</span>;
+<span style="color: #268bd2;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbfd99dd" class="outline-2">
+<h2 id="orgbfd99dd"><span class="section-number-2">5</span> 3dParty Libs</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgb509567" class="outline-3">
+<h3 id="orgb509567"><span class="section-number-3">5.1</span> boost</h3>
+</div>
+<div id="outline-container-orge22dc10" class="outline-3">
+<h3 id="orge22dc10"><span class="section-number-3">5.2</span> Lexical Cast</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 Use "boost" lib to Convert DataType
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">string</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">iostream</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #2d9574;">"boost/lexical_cast.hpp"</span>
-<span style="color: #4f97d7; font-weight: bold;">using</span> <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">lexical_cast</span>;
-<span style="color: #4f97d7; font-weight: bold;">using</span> <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">bad_lexical_cast</span>;
-<span style="color: #4f97d7; font-weight: bold;">using</span> <span style="color: #4f97d7; font-weight: bold;">namespace</span> <span style="color: #a45bad;">std</span>;
-<span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #bc6ec5; font-weight: bold;">main</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">argc</span>, <span style="color: #ce537a; font-weight: bold;">char</span> *<span style="color: #7590db;">argv</span><span style="color: #bc6ec5;">[]</span><span style="color: #4f97d7;">)</span>
-<span style="color: #4f97d7;">{</span>
-  <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">s</span>=<span style="color: #a45bad;">23</span>;
-  <span style="color: #ce537a; font-weight: bold;">string</span> <span style="color: #7590db;">str</span>=lexical_cast<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">string</span><span style="color: #bc6ec5;">&gt;(</span>s<span style="color: #bc6ec5;">)</span>;
-  cout&lt;&lt;<span style="color: #2d9574;">"int to str: "</span>&lt;&lt;str&lt;&lt;endl;
+<pre class="src src-C++"><span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">string</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">iostream</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #2aa198;">"boost/lexical_cast.hpp"</span>
+<span style="color: #268bd2; font-weight: bold;">using</span> <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">lexical_cast</span>;
+<span style="color: #268bd2; font-weight: bold;">using</span> <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">bad_lexical_cast</span>;
+<span style="color: #268bd2; font-weight: bold;">using</span> <span style="color: #268bd2; font-weight: bold;">namespace</span> <span style="color: #d75fd7;">std</span>;
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">argc</span>, <span style="color: #df005f; font-weight: bold;">char</span> *<span style="color: #8787d7;">argv</span><span style="color: #d75fd7;">[]</span><span style="color: #268bd2;">)</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">s</span>=<span style="color: #d75fd7;">23</span>;
+  <span style="color: #df005f; font-weight: bold;">string</span> <span style="color: #8787d7;">str</span>=lexical_cast<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">string</span><span style="color: #d75fd7;">&gt;(</span>s<span style="color: #d75fd7;">)</span>;
+  cout&lt;&lt;<span style="color: #2aa198;">"int to str: "</span>&lt;&lt;str&lt;&lt;endl;
 
-  str=<span style="color: #2d9574;">"Message: "</span>+lexical_cast<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">string</span><span style="color: #bc6ec5;">&gt;(</span><span style="color: #2d9574;">'A'</span><span style="color: #bc6ec5;">)</span>+<span style="color: #2d9574;">"="</span>+lexical_cast<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">string</span><span style="color: #bc6ec5;">&gt;(</span><span style="color: #a45bad;">34.5</span><span style="color: #bc6ec5;">)</span>;
-  cout&lt;&lt;<span style="color: #2d9574;">"char and float to str: "</span>&lt;&lt;str&lt;&lt;endl;
+  str=<span style="color: #2aa198;">"Message: "</span>+lexical_cast<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">string</span><span style="color: #d75fd7;">&gt;(</span><span style="color: #2aa198;">'A'</span><span style="color: #d75fd7;">)</span>+<span style="color: #2aa198;">"="</span>+lexical_cast<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">string</span><span style="color: #d75fd7;">&gt;(</span><span style="color: #d75fd7;">34.5</span><span style="color: #d75fd7;">)</span>;
+  cout&lt;&lt;<span style="color: #2aa198;">"char and float to str: "</span>&lt;&lt;str&lt;&lt;endl;
 
-  <span style="color: #ce537a; font-weight: bold;">array</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">char</span>,<span style="color: #a45bad;">64</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">msg</span>=lexical_cast<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">array</span><span style="color: #2d9574;">&lt;</span><span style="color: #ce537a; font-weight: bold;">char</span>,<span style="color: #a45bad;">64</span><span style="color: #2d9574;">&gt;</span><span style="color: #bc6ec5;">&gt;(</span><span style="color: #a45bad;">23</span><span style="color: #bc6ec5;">)</span>;
-  <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #bc6ec5;">(</span><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">i</span>=<span style="color: #a45bad;">0</span>; i &lt;<span style="color: #a45bad;">2</span> ; i++<span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"int to char array, msg:"</span>&lt;&lt;msg<span style="color: #2d9574;">[</span>i<span style="color: #2d9574;">]</span>&lt;&lt;endl;  
-  <span style="color: #bc6ec5;">}</span>
+  <span style="color: #df005f; font-weight: bold;">array</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">char</span>,<span style="color: #d75fd7;">64</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">msg</span>=lexical_cast<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">array</span><span style="color: #2aa198;">&lt;</span><span style="color: #df005f; font-weight: bold;">char</span>,<span style="color: #d75fd7;">64</span><span style="color: #2aa198;">&gt;</span><span style="color: #d75fd7;">&gt;(</span><span style="color: #d75fd7;">23</span><span style="color: #d75fd7;">)</span>;
+  <span style="color: #268bd2; font-weight: bold;">for</span> <span style="color: #d75fd7;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">i</span>=<span style="color: #d75fd7;">0</span>; i &lt;<span style="color: #d75fd7;">2</span> ; i++<span style="color: #d75fd7;">)</span> <span style="color: #d75fd7;">{</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"int to char array, msg:"</span>&lt;&lt;msg<span style="color: #2aa198;">[</span>i<span style="color: #2aa198;">]</span>&lt;&lt;endl;  
+  <span style="color: #d75fd7;">}</span>
 
 
-  s=lexical_cast<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #bc6ec5;">&gt;(</span><span style="color: #2d9574;">"3456"</span><span style="color: #bc6ec5;">)</span>;
-  cout&lt;&lt;<span style="color: #2d9574;">"int to string:"</span>&lt;&lt;s&lt;&lt;endl;
+  s=lexical_cast<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">&gt;(</span><span style="color: #2aa198;">"3456"</span><span style="color: #d75fd7;">)</span>;
+  cout&lt;&lt;<span style="color: #2aa198;">"int to string:"</span>&lt;&lt;s&lt;&lt;endl;
 
-  <span style="color: #4f97d7; font-weight: bold;">try</span> <span style="color: #bc6ec5;">{</span>
-    s=lexical_cast<span style="color: #2d9574;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #2d9574;">&gt;(</span><span style="color: #2d9574;">"56.78"</span><span style="color: #2d9574;">)</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">bad_lexical_cast</span>
-  <span style="color: #bc6ec5;">}</span> <span style="color: #4f97d7; font-weight: bold;">catch</span> <span style="color: #bc6ec5;">(</span>bad_lexical_cast &amp;e<span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"Exception caught: "</span>&lt;&lt;e.what<span style="color: #2d9574;">()</span>&lt;&lt;endl;
-  <span style="color: #bc6ec5;">}</span>
-  <span style="color: #4f97d7; font-weight: bold;">try</span><span style="color: #bc6ec5;">{</span>
-  s=lexical_cast<span style="color: #2d9574;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #2d9574;">&gt;(</span><span style="color: #2d9574;">"3456yu"</span><span style="color: #2d9574;">)</span>;<span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">bad_lexical_cast</span>
-  <span style="color: #bc6ec5;">}</span><span style="color: #4f97d7; font-weight: bold;">catch</span><span style="color: #bc6ec5;">(</span>bad_lexical_cast &amp;e<span style="color: #bc6ec5;">){</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"Exception caught: "</span>&lt;&lt;e.what<span style="color: #2d9574;">()</span>&lt;&lt;endl;
-  <span style="color: #bc6ec5;">}</span>
-  s=lexical_cast<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #bc6ec5;">&gt;(</span><span style="color: #2d9574;">"3456yu"</span>,<span style="color: #a45bad;">4</span><span style="color: #bc6ec5;">)</span>;
+  <span style="color: #268bd2; font-weight: bold;">try</span> <span style="color: #d75fd7;">{</span>
+    s=lexical_cast<span style="color: #2aa198;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #2aa198;">&gt;(</span><span style="color: #2aa198;">"56.78"</span><span style="color: #2aa198;">)</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">bad_lexical_cast</span>
+  <span style="color: #d75fd7;">}</span> <span style="color: #268bd2; font-weight: bold;">catch</span> <span style="color: #d75fd7;">(</span>bad_lexical_cast &amp;e<span style="color: #d75fd7;">)</span> <span style="color: #d75fd7;">{</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"Exception caught: "</span>&lt;&lt;e.what<span style="color: #2aa198;">()</span>&lt;&lt;endl;
+  <span style="color: #d75fd7;">}</span>
+  <span style="color: #268bd2; font-weight: bold;">try</span><span style="color: #d75fd7;">{</span>
+  s=lexical_cast<span style="color: #2aa198;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #2aa198;">&gt;(</span><span style="color: #2aa198;">"3456yu"</span><span style="color: #2aa198;">)</span>;<span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">bad_lexical_cast</span>
+  <span style="color: #d75fd7;">}</span><span style="color: #268bd2; font-weight: bold;">catch</span><span style="color: #d75fd7;">(</span>bad_lexical_cast &amp;e<span style="color: #d75fd7;">){</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"Exception caught: "</span>&lt;&lt;e.what<span style="color: #2aa198;">()</span>&lt;&lt;endl;
+  <span style="color: #d75fd7;">}</span>
+  s=lexical_cast<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">&gt;(</span><span style="color: #2aa198;">"3456yu"</span>,<span style="color: #d75fd7;">4</span><span style="color: #d75fd7;">)</span>;
   cout&lt;&lt;s&lt;&lt;endl;
-  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">0</span>;
-<span style="color: #4f97d7;">}</span> 
+  <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">0</span>;
+<span style="color: #268bd2;">}</span> 
 
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgfd76560" class="outline-3">
-<h3 id="orgfd76560"><span class="section-number-3">4.3</span> variant</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-org14361bf" class="outline-3">
+<h3 id="org14361bf"><span class="section-number-3">5.3</span> variant</h3>
+<div class="outline-text-3" id="text-5-3">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">vector</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">iostream</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #2d9574;">"boost/variant.hpp"</span>
-<span style="color: #4f97d7; font-weight: bold;">using</span> <span style="color: #4f97d7; font-weight: bold;">namespace</span> <span style="color: #a45bad;">std</span>;
-<span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #bc6ec5; font-weight: bold;">main</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">argc</span>, <span style="color: #ce537a; font-weight: bold;">char</span> *<span style="color: #7590db;">argv</span><span style="color: #bc6ec5;">[]</span><span style="color: #4f97d7;">)</span>
-<span style="color: #4f97d7;">{</span>
-  <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">union</span>
-  <span style="color: #4f97d7; font-weight: bold;">union</span> <span style="color: #bc6ec5;">{</span><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">i</span>; <span style="color: #ce537a; font-weight: bold;">float</span> <span style="color: #7590db;">f</span>;<span style="color: #bc6ec5;">}</span> <span style="color: #7590db;">u</span>;
-  u.i=<span style="color: #a45bad;">34</span>;
-  u.f=<span style="color: #a45bad;">2.3</span>;
+<pre class="src src-C++"><span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">vector</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">iostream</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #2aa198;">"boost/variant.hpp"</span>
+<span style="color: #268bd2; font-weight: bold;">using</span> <span style="color: #268bd2; font-weight: bold;">namespace</span> <span style="color: #d75fd7;">std</span>;
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">argc</span>, <span style="color: #df005f; font-weight: bold;">char</span> *<span style="color: #8787d7;">argv</span><span style="color: #d75fd7;">[]</span><span style="color: #268bd2;">)</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">union</span>
+  <span style="color: #268bd2; font-weight: bold;">union</span> <span style="color: #d75fd7;">{</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">i</span>; <span style="color: #df005f; font-weight: bold;">float</span> <span style="color: #8787d7;">f</span>;<span style="color: #d75fd7;">}</span> <span style="color: #8787d7;">u</span>;
+  u.i=<span style="color: #d75fd7;">34</span>;
+  u.f=<span style="color: #d75fd7;">2.3</span>;
 
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">variant</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span>,<span style="color: #ce537a; font-weight: bold;">string</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">u1</span>,<span style="color: #7590db;">u2</span>;
-  u1=<span style="color: #a45bad;">2</span>;
-  u2=<span style="color: #2d9574;">"hello"</span>;
-  cout&lt;&lt;u1&lt;&lt;<span style="color: #2d9574;">" "</span>&lt;&lt;u2&lt;&lt;endl;
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">variant</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span>,<span style="color: #df005f; font-weight: bold;">string</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">u1</span>,<span style="color: #8787d7;">u2</span>;
+  u1=<span style="color: #d75fd7;">2</span>;
+  u2=<span style="color: #2aa198;">"hello"</span>;
+  cout&lt;&lt;u1&lt;&lt;<span style="color: #2aa198;">" "</span>&lt;&lt;u2&lt;&lt;endl;
 
-  <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">u1=u1*2 error</span>
-  u1=<span style="color: #a45bad;">boost</span>::get<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #bc6ec5;">&gt;(</span>u1<span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">2</span>;
+  <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">u1=u1*2 error</span>
+  u1=<span style="color: #d75fd7;">boost</span>::get<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">&gt;(</span>u1<span style="color: #d75fd7;">)</span>*<span style="color: #d75fd7;">2</span>;
 
-  <span style="color: #4f97d7; font-weight: bold;">try</span><span style="color: #bc6ec5;">{</span>
-    <span style="color: #ce537a; font-weight: bold;">string</span> <span style="color: #7590db;">st</span>=<span style="color: #a45bad;">boost</span>::get<span style="color: #2d9574;">&lt;</span><span style="color: #ce537a; font-weight: bold;">string</span><span style="color: #2d9574;">&gt;(</span>u1<span style="color: #2d9574;">)</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">throw exception of bad_get</span>
-  <span style="color: #bc6ec5;">}</span><span style="color: #4f97d7; font-weight: bold;">catch</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">boost</span>::bad_get &amp;e<span style="color: #bc6ec5;">){</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"Exception caught: "</span>&lt;&lt;e.what<span style="color: #2d9574;">()</span>&lt;&lt;endl;
-  <span style="color: #bc6ec5;">}</span>
-  u1=<span style="color: #2d9574;">"good"</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">u1 become a sting</span>
-  u1=<span style="color: #a45bad;">32</span>;      <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">u1 become a int again</span>
+  <span style="color: #268bd2; font-weight: bold;">try</span><span style="color: #d75fd7;">{</span>
+    <span style="color: #df005f; font-weight: bold;">string</span> <span style="color: #8787d7;">st</span>=<span style="color: #d75fd7;">boost</span>::get<span style="color: #2aa198;">&lt;</span><span style="color: #df005f; font-weight: bold;">string</span><span style="color: #2aa198;">&gt;(</span>u1<span style="color: #2aa198;">)</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">throw exception of bad_get</span>
+  <span style="color: #d75fd7;">}</span><span style="color: #268bd2; font-weight: bold;">catch</span><span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">boost</span>::bad_get &amp;e<span style="color: #d75fd7;">){</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"Exception caught: "</span>&lt;&lt;e.what<span style="color: #2aa198;">()</span>&lt;&lt;endl;
+  <span style="color: #d75fd7;">}</span>
+  u1=<span style="color: #2aa198;">"good"</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">u1 become a sting</span>
+  u1=<span style="color: #d75fd7;">32</span>;      <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">u1 become a int again</span>
 
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">variant</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span>,<span style="color: #ce537a; font-weight: bold;">string</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">u3</span>;
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">variant</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span>,<span style="color: #df005f; font-weight: bold;">string</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">u3</span>;
   cout&lt;&lt;u3&lt;&lt;endl;
 
-  <span style="color: #ce537a; font-weight: bold;">void</span> <span style="color: #bc6ec5; font-weight: bold;">Double</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">variant</span><span style="color: #2d9574;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span>,<span style="color: #ce537a; font-weight: bold;">string</span><span style="color: #2d9574;">&gt;</span> <span style="color: #7590db;">v</span><span style="color: #bc6ec5;">)</span>;
+  <span style="color: #df005f; font-weight: bold;">void</span> <span style="color: #d75fd7; font-weight: bold;">Double</span><span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">variant</span><span style="color: #2aa198;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span>,<span style="color: #df005f; font-weight: bold;">string</span><span style="color: #2aa198;">&gt;</span> <span style="color: #8787d7;">v</span><span style="color: #d75fd7;">)</span>;
 
-  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">using visitor</span>
-  <span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">DoubleVisitor</span>: <span style="color: #4f97d7; font-weight: bold;">public</span> <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">static_visitor</span><span style="color: #bc6ec5;">&lt;&gt;{</span>
-   <span style="color: #4f97d7; font-weight: bold;">public</span>:
-    <span style="color: #ce537a; font-weight: bold;">void</span> <span style="color: #4f97d7; font-weight: bold;">operator</span><span style="color: #2d9574; font-weight: bold;">()</span> <span style="color: #2d9574;">(</span><span style="color: #ce537a; font-weight: bold;">int</span>&amp; <span style="color: #7590db;">i</span><span style="color: #2d9574;">)</span> <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #2d9574;">{</span>
+  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">using visitor</span>
+  <span style="color: #268bd2; font-weight: bold;">class</span> <span style="color: #df005f; font-weight: bold;">DoubleVisitor</span>: <span style="color: #268bd2; font-weight: bold;">public</span> <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">static_visitor</span><span style="color: #d75fd7;">&lt;&gt;{</span>
+   <span style="color: #268bd2; font-weight: bold;">public</span>:
+    <span style="color: #df005f; font-weight: bold;">void</span> <span style="color: #268bd2; font-weight: bold;">operator</span><span style="color: #2aa198; font-weight: bold;">()</span> <span style="color: #2aa198;">(</span><span style="color: #df005f; font-weight: bold;">int</span>&amp; <span style="color: #8787d7;">i</span><span style="color: #2aa198;">)</span> <span style="color: #268bd2; font-weight: bold;">const</span> <span style="color: #2aa198;">{</span>
       i+=i;
-    <span style="color: #2d9574;">}</span>
-    <span style="color: #ce537a; font-weight: bold;">void</span> <span style="color: #4f97d7; font-weight: bold;">operator</span><span style="color: #2d9574; font-weight: bold;">()</span> <span style="color: #2d9574;">(</span><span style="color: #ce537a; font-weight: bold;">string</span>&amp; <span style="color: #7590db;">str</span><span style="color: #2d9574;">)</span> <span style="color: #4f97d7; font-weight: bold;">const</span><span style="color: #2d9574;">{</span>
+    <span style="color: #2aa198;">}</span>
+    <span style="color: #df005f; font-weight: bold;">void</span> <span style="color: #268bd2; font-weight: bold;">operator</span><span style="color: #2aa198; font-weight: bold;">()</span> <span style="color: #2aa198;">(</span><span style="color: #df005f; font-weight: bold;">string</span>&amp; <span style="color: #8787d7;">str</span><span style="color: #2aa198;">)</span> <span style="color: #268bd2; font-weight: bold;">const</span><span style="color: #2aa198;">{</span>
       str+=str;
-    <span style="color: #2d9574;">}</span>
-  <span style="color: #bc6ec5;">}</span>;
+    <span style="color: #2aa198;">}</span>
+  <span style="color: #d75fd7;">}</span>;
 
-  u1=<span style="color: #a45bad;">2</span>;
-  <span style="color: #a45bad;">boost</span>::apply_visitor<span style="color: #bc6ec5;">(</span>DoubleVisitor<span style="color: #2d9574;">()</span>,u1<span style="color: #bc6ec5;">)</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">u1 become 4</span>
-  u2=<span style="color: #2d9574;">"hello"</span>;
-  <span style="color: #a45bad;">boost</span>::apply_visitor<span style="color: #bc6ec5;">(</span>DoubleVisitor<span style="color: #2d9574;">()</span>,u2<span style="color: #bc6ec5;">)</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">u2 become "hellohello"</span>
+  u1=<span style="color: #d75fd7;">2</span>;
+  <span style="color: #d75fd7;">boost</span>::apply_visitor<span style="color: #d75fd7;">(</span>DoubleVisitor<span style="color: #2aa198;">()</span>,u1<span style="color: #d75fd7;">)</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">u1 become 4</span>
+  u2=<span style="color: #2aa198;">"hello"</span>;
+  <span style="color: #d75fd7;">boost</span>::apply_visitor<span style="color: #d75fd7;">(</span>DoubleVisitor<span style="color: #2aa198;">()</span>,u2<span style="color: #d75fd7;">)</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">u2 become "hellohello"</span>
 
-  <span style="color: #a45bad;">std</span>::<span style="color: #ce537a; font-weight: bold;">vector</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">variant</span><span style="color: #2d9574;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span>,<span style="color: #ce537a; font-weight: bold;">string</span><span style="color: #2d9574;">&gt;</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">vec</span>;
-  vec.push_back<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"good"</span><span style="color: #bc6ec5;">)</span>;
-  vec.push_back<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">23</span><span style="color: #bc6ec5;">)</span>;
-  vec.push_back<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"bad"</span><span style="color: #bc6ec5;">)</span>;
+  <span style="color: #d75fd7;">std</span>::<span style="color: #df005f; font-weight: bold;">vector</span><span style="color: #d75fd7;">&lt;</span><span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">variant</span><span style="color: #2aa198;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span>,<span style="color: #df005f; font-weight: bold;">string</span><span style="color: #2aa198;">&gt;</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">vec</span>;
+  vec.push_back<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"good"</span><span style="color: #d75fd7;">)</span>;
+  vec.push_back<span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">23</span><span style="color: #d75fd7;">)</span>;
+  vec.push_back<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"bad"</span><span style="color: #d75fd7;">)</span>;
 
-  <span style="color: #ce537a; font-weight: bold;">DoubleVisitor</span> <span style="color: #7590db;">f</span>;
-  <span style="color: #4f97d7; font-weight: bold;">for</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7; font-weight: bold;">auto</span> <span style="color: #7590db;">x</span>: vec<span style="color: #bc6ec5;">){</span>
-    <span style="color: #a45bad;">boost</span>::apply_visitor<span style="color: #2d9574;">(</span>f,x<span style="color: #2d9574;">)</span>;
+  <span style="color: #df005f; font-weight: bold;">DoubleVisitor</span> <span style="color: #8787d7;">f</span>;
+  <span style="color: #268bd2; font-weight: bold;">for</span><span style="color: #d75fd7;">(</span><span style="color: #268bd2; font-weight: bold;">auto</span> <span style="color: #8787d7;">x</span>: vec<span style="color: #d75fd7;">){</span>
+    <span style="color: #d75fd7;">boost</span>::apply_visitor<span style="color: #2aa198;">(</span>f,x<span style="color: #2aa198;">)</span>;
     cout&lt;&lt;x&lt;&lt;endl;
-  <span style="color: #bc6ec5;">}</span>
+  <span style="color: #d75fd7;">}</span>
 
-  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">0</span>;
-<span style="color: #4f97d7;">}</span>
+  <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">0</span>;
+<span style="color: #268bd2;">}</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org1858c13" class="outline-3">
-<h3 id="org1858c13"><span class="section-number-3">4.4</span> Any</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-org0988a3e" class="outline-3">
+<h3 id="org0988a3e"><span class="section-number-3">5.4</span> Any</h3>
+<div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">vector</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">iostream</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #2d9574;">"boost/any.hpp"</span>
-<span style="color: #4f97d7; font-weight: bold;">using</span> <span style="color: #4f97d7; font-weight: bold;">namespace</span> <span style="color: #a45bad;">std</span>;
-<span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #bc6ec5; font-weight: bold;">main</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">argc</span>, <span style="color: #ce537a; font-weight: bold;">char</span> *<span style="color: #7590db;">argv</span><span style="color: #bc6ec5;">[]</span><span style="color: #4f97d7;">)</span>
-<span style="color: #4f97d7;">{</span>
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">any</span> <span style="color: #7590db;">x</span>,<span style="color: #7590db;">y</span>,<span style="color: #7590db;">z</span>;
-  x=string<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"hello"</span><span style="color: #bc6ec5;">)</span>;
-  x=<span style="color: #a45bad;">2.3</span>;
-  y=<span style="color: #2d9574;">'z'</span>;
-  z=vector<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #bc6ec5;">&gt;()</span>;
+<pre class="src src-C++"><span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">vector</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">iostream</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #2aa198;">"boost/any.hpp"</span>
+<span style="color: #268bd2; font-weight: bold;">using</span> <span style="color: #268bd2; font-weight: bold;">namespace</span> <span style="color: #d75fd7;">std</span>;
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">argc</span>, <span style="color: #df005f; font-weight: bold;">char</span> *<span style="color: #8787d7;">argv</span><span style="color: #d75fd7;">[]</span><span style="color: #268bd2;">)</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">any</span> <span style="color: #8787d7;">x</span>,<span style="color: #8787d7;">y</span>,<span style="color: #8787d7;">z</span>;
+  x=string<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">"hello"</span><span style="color: #d75fd7;">)</span>;
+  x=<span style="color: #d75fd7;">2.3</span>;
+  y=<span style="color: #2aa198;">'z'</span>;
+  z=vector<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">&gt;()</span>;
 
-  cout&lt;&lt;<span style="color: #a45bad;">boost</span>::any_cast<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">char</span><span style="color: #bc6ec5;">&gt;(</span>y<span style="color: #bc6ec5;">)</span>&lt;&lt;endl;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">return a copy of y's data: 'z'</span>
-  cout&lt;&lt;<span style="color: #a45bad;">boost</span>::any_cast<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">double</span><span style="color: #bc6ec5;">&gt;(</span>x<span style="color: #bc6ec5;">)</span>&lt;&lt;endl; <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">return a copy of x's data: 2.3</span>
-  <span style="color: #4f97d7; font-weight: bold;">try</span> <span style="color: #bc6ec5;">{</span>
-    cout&lt;&lt;<span style="color: #a45bad;">boost</span>::any_cast<span style="color: #2d9574;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #2d9574;">&gt;(</span>x<span style="color: #2d9574;">)</span>&lt;&lt;endl;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">throws bad_cast_any</span>
-  <span style="color: #bc6ec5;">}</span> <span style="color: #4f97d7; font-weight: bold;">catch</span> <span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">boost</span>::bad_any_cast&amp; e<span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"Exception: "</span>&lt;&lt;e.what<span style="color: #2d9574;">()</span>&lt;&lt;endl;
-  <span style="color: #bc6ec5;">}</span>
-  <span style="color: #4f97d7; font-weight: bold;">try</span> <span style="color: #bc6ec5;">{</span>
-    cout&lt;&lt;<span style="color: #a45bad;">boost</span>::any_cast<span style="color: #2d9574;">&lt;</span><span style="color: #ce537a; font-weight: bold;">float</span><span style="color: #2d9574;">&gt;(</span>x<span style="color: #2d9574;">)</span>&lt;&lt;endl;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">throws bad_any_cast  </span>
-  <span style="color: #bc6ec5;">}</span> <span style="color: #4f97d7; font-weight: bold;">catch</span> <span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">boost</span>::bad_any_cast&amp; e<span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"Exception: "</span>&lt;&lt;e.what<span style="color: #2d9574;">()</span>&lt;&lt;endl;
-  <span style="color: #bc6ec5;">}</span>
+  cout&lt;&lt;<span style="color: #d75fd7;">boost</span>::any_cast<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">char</span><span style="color: #d75fd7;">&gt;(</span>y<span style="color: #d75fd7;">)</span>&lt;&lt;endl;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">return a copy of y's data: 'z'</span>
+  cout&lt;&lt;<span style="color: #d75fd7;">boost</span>::any_cast<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">double</span><span style="color: #d75fd7;">&gt;(</span>x<span style="color: #d75fd7;">)</span>&lt;&lt;endl; <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">return a copy of x's data: 2.3</span>
+  <span style="color: #268bd2; font-weight: bold;">try</span> <span style="color: #d75fd7;">{</span>
+    cout&lt;&lt;<span style="color: #d75fd7;">boost</span>::any_cast<span style="color: #2aa198;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #2aa198;">&gt;(</span>x<span style="color: #2aa198;">)</span>&lt;&lt;endl;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">throws bad_cast_any</span>
+  <span style="color: #d75fd7;">}</span> <span style="color: #268bd2; font-weight: bold;">catch</span> <span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">boost</span>::bad_any_cast&amp; e<span style="color: #d75fd7;">)</span> <span style="color: #d75fd7;">{</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"Exception: "</span>&lt;&lt;e.what<span style="color: #2aa198;">()</span>&lt;&lt;endl;
+  <span style="color: #d75fd7;">}</span>
+  <span style="color: #268bd2; font-weight: bold;">try</span> <span style="color: #d75fd7;">{</span>
+    cout&lt;&lt;<span style="color: #d75fd7;">boost</span>::any_cast<span style="color: #2aa198;">&lt;</span><span style="color: #df005f; font-weight: bold;">float</span><span style="color: #2aa198;">&gt;(</span>x<span style="color: #2aa198;">)</span>&lt;&lt;endl;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">throws bad_any_cast  </span>
+  <span style="color: #d75fd7;">}</span> <span style="color: #268bd2; font-weight: bold;">catch</span> <span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">boost</span>::bad_any_cast&amp; e<span style="color: #d75fd7;">)</span> <span style="color: #d75fd7;">{</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"Exception: "</span>&lt;&lt;e.what<span style="color: #2aa198;">()</span>&lt;&lt;endl;
+  <span style="color: #d75fd7;">}</span>
 
-  <span style="color: #4f97d7; font-weight: bold;">if</span><span style="color: #bc6ec5;">(</span>x.empty<span style="color: #2d9574;">()</span><span style="color: #bc6ec5;">)</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"x is empty"</span>&lt;&lt;endl;
+  <span style="color: #268bd2; font-weight: bold;">if</span><span style="color: #d75fd7;">(</span>x.empty<span style="color: #2aa198;">()</span><span style="color: #d75fd7;">)</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"x is empty"</span>&lt;&lt;endl;
 
-  <span style="color: #4f97d7; font-weight: bold;">if</span><span style="color: #bc6ec5;">(</span>x.type<span style="color: #2d9574;">()</span>==<span style="color: #4f97d7; font-weight: bold;">typeid</span><span style="color: #2d9574;">(</span><span style="color: #ce537a; font-weight: bold;">char</span><span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"x is char"</span>&lt;&lt;endl;
+  <span style="color: #268bd2; font-weight: bold;">if</span><span style="color: #d75fd7;">(</span>x.type<span style="color: #2aa198;">()</span>==<span style="color: #268bd2; font-weight: bold;">typeid</span><span style="color: #2aa198;">(</span><span style="color: #df005f; font-weight: bold;">char</span><span style="color: #2aa198;">)</span><span style="color: #d75fd7;">)</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"x is char"</span>&lt;&lt;endl;
 
-  <span style="color: #2aa1ae; background-color: #292e34;">/*</span><span style="color: #2aa1ae; background-color: #292e34;">This is the wrong use example</span>
-<span style="color: #2aa1ae; background-color: #292e34;">  boost::any_cast&lt;vector&lt;int&gt;&gt;(z).push_back(23);</span>
-<span style="color: #2aa1ae; background-color: #292e34;">  int i=boost::any_cast&lt;vector&lt;int&gt;&gt;(z).back();  // crash, becase boost::any_cast&lt;vector&lt;int&gt;&gt;(z) return a copy of variable z</span>
-<span style="color: #2aa1ae; background-color: #292e34;">  */</span>
-  <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">i</span>;
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">any</span> <span style="color: #7590db;">p</span>=&amp;i;
-  <span style="color: #ce537a; font-weight: bold;">int</span>* <span style="color: #7590db;">pInt</span>=<span style="color: #a45bad;">boost</span>::any_cast<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span>*<span style="color: #bc6ec5;">&gt;(</span>p<span style="color: #bc6ec5;">)</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">returns a pointer</span>
+  <span style="color: #008787; background-color: #262626;">/*</span><span style="color: #008787; background-color: #262626;">This is the wrong use example</span>
+<span style="color: #008787; background-color: #262626;">  boost::any_cast&lt;vector&lt;int&gt;&gt;(z).push_back(23);</span>
+<span style="color: #008787; background-color: #262626;">  int i=boost::any_cast&lt;vector&lt;int&gt;&gt;(z).back();  // crash, becase boost::any_cast&lt;vector&lt;int&gt;&gt;(z) return a copy of variable z</span>
+<span style="color: #008787; background-color: #262626;">  */</span>
+  <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">i</span>;
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">any</span> <span style="color: #8787d7;">p</span>=&amp;i;
+  <span style="color: #df005f; font-weight: bold;">int</span>* <span style="color: #8787d7;">pInt</span>=<span style="color: #d75fd7;">boost</span>::any_cast<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span>*<span style="color: #d75fd7;">&gt;(</span>p<span style="color: #d75fd7;">)</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">returns a pointer</span>
 
-  <span style="color: #ce537a; font-weight: bold;">vector</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">any</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">m</span>;
-  m.push_back<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">2</span><span style="color: #bc6ec5;">)</span>;
-  m.push_back<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'a'</span><span style="color: #bc6ec5;">)</span>;
-  m.push_back<span style="color: #bc6ec5;">(</span>p<span style="color: #bc6ec5;">)</span>;
-  m.push_back<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">boost</span>::<span style="color: #bc6ec5; font-weight: bold;">any</span><span style="color: #2d9574;">()</span><span style="color: #bc6ec5;">)</span>;
+  <span style="color: #df005f; font-weight: bold;">vector</span><span style="color: #d75fd7;">&lt;</span><span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">any</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">m</span>;
+  m.push_back<span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">2</span><span style="color: #d75fd7;">)</span>;
+  m.push_back<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">'a'</span><span style="color: #d75fd7;">)</span>;
+  m.push_back<span style="color: #d75fd7;">(</span>p<span style="color: #d75fd7;">)</span>;
+  m.push_back<span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">boost</span>::<span style="color: #d75fd7; font-weight: bold;">any</span><span style="color: #2aa198;">()</span><span style="color: #d75fd7;">)</span>;
 
-  <span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #ce537a; font-weight: bold;">Property</span><span style="color: #bc6ec5;">{</span>
-    <span style="color: #ce537a; font-weight: bold;">string</span> <span style="color: #7590db;">name</span>;
-    <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">any</span> <span style="color: #7590db;">value</span>;
-  <span style="color: #bc6ec5;">}</span>;
+  <span style="color: #268bd2; font-weight: bold;">struct</span> <span style="color: #df005f; font-weight: bold;">Property</span><span style="color: #d75fd7;">{</span>
+    <span style="color: #df005f; font-weight: bold;">string</span> <span style="color: #8787d7;">name</span>;
+    <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">any</span> <span style="color: #8787d7;">value</span>;
+  <span style="color: #d75fd7;">}</span>;
 
-  <span style="color: #ce537a; font-weight: bold;">vector</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">Property</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">properties</span>;
+  <span style="color: #df005f; font-weight: bold;">vector</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">Property</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">properties</span>;
 
-  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">0</span>;
-<span style="color: #4f97d7;">}</span>
+  <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">0</span>;
+<span style="color: #268bd2;">}</span>
 
 </pre>
 </div>
@@ -701,80 +970,80 @@ Use "boost" lib to Convert DataType
 <li>This is a common wrong use example</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">any</span> <span style="color: #7590db;">z</span>;
-z=vector<span style="color: #4f97d7;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #4f97d7;">&gt;()</span>;
-<span style="color: #a45bad;">boost</span>::any_cast<span style="color: #4f97d7;">&lt;</span><span style="color: #ce537a; font-weight: bold;">vector</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #bc6ec5;">&gt;</span><span style="color: #4f97d7;">&gt;(</span>z<span style="color: #4f97d7;">)</span>.push_back<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">23</span><span style="color: #4f97d7;">)</span>;
-<span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">i</span>=<span style="color: #a45bad;">boost</span>::any_cast<span style="color: #4f97d7;">&lt;</span><span style="color: #ce537a; font-weight: bold;">vector</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #bc6ec5;">&gt;</span><span style="color: #4f97d7;">&gt;(</span>z<span style="color: #4f97d7;">)</span>.back<span style="color: #4f97d7;">()</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">crash, becase boost::any_cast&lt;vector&lt;int&gt;&gt;(z) return a copy of variable z</span>
+<pre class="src src-C++"><span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">any</span> <span style="color: #8787d7;">z</span>;
+z=vector<span style="color: #268bd2;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #268bd2;">&gt;()</span>;
+<span style="color: #d75fd7;">boost</span>::any_cast<span style="color: #268bd2;">&lt;</span><span style="color: #df005f; font-weight: bold;">vector</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">&gt;</span><span style="color: #268bd2;">&gt;(</span>z<span style="color: #268bd2;">)</span>.push_back<span style="color: #268bd2;">(</span><span style="color: #d75fd7;">23</span><span style="color: #268bd2;">)</span>;
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">i</span>=<span style="color: #d75fd7;">boost</span>::any_cast<span style="color: #268bd2;">&lt;</span><span style="color: #df005f; font-weight: bold;">vector</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">&gt;</span><span style="color: #268bd2;">&gt;(</span>z<span style="color: #268bd2;">)</span>.back<span style="color: #268bd2;">()</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">crash, becase boost::any_cast&lt;vector&lt;int&gt;&gt;(z) return a copy of variable z</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgaf890ec" class="outline-3">
-<h3 id="orgaf890ec"><span class="section-number-3">4.5</span> optional</h3>
-<div class="outline-text-3" id="text-4-5">
+<div id="outline-container-orgcca9dd2" class="outline-3">
+<h3 id="orgcca9dd2"><span class="section-number-3">5.5</span> optional</h3>
+<div class="outline-text-3" id="text-5-5">
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #bc6ec5;">#include</span> <span style="color: #2d9574;">"boost/optional.hpp"</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #2d9574;">"boost/variant.hpp"</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">iostream</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">vector</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">deque</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #4f97d7; font-weight: bold;">using</span> <span style="color: #4f97d7; font-weight: bold;">namespace</span> <span style="color: #a45bad;">std</span>;
+<pre class="src src-C++"><span style="color: #d75fd7;">#include</span> <span style="color: #2aa198;">"boost/optional.hpp"</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #2aa198;">"boost/variant.hpp"</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">iostream</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">vector</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #d75fd7;">#include</span> <span style="color: #268bd2;">&lt;</span><span style="color: #2aa198;">deque</span><span style="color: #268bd2;">&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">using</span> <span style="color: #268bd2; font-weight: bold;">namespace</span> <span style="color: #d75fd7;">std</span>;
 
-<span style="color: #ce537a; font-weight: bold;">deque</span><span style="color: #4f97d7;">&lt;</span><span style="color: #ce537a; font-weight: bold;">char</span><span style="color: #4f97d7;">&gt;</span> <span style="color: #7590db;">queue</span>;
+<span style="color: #df005f; font-weight: bold;">deque</span><span style="color: #268bd2;">&lt;</span><span style="color: #df005f; font-weight: bold;">char</span><span style="color: #268bd2;">&gt;</span> <span style="color: #8787d7;">queue</span>;
 
-<span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">optional</span><span style="color: #4f97d7;">&lt;</span><span style="color: #ce537a; font-weight: bold;">char</span><span style="color: #4f97d7;">&gt;</span>  <span style="color: #bc6ec5; font-weight: bold;">get_async_data</span><span style="color: #4f97d7;">(){</span>
-  <span style="color: #4f97d7; font-weight: bold;">if</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">!</span>queue.empty<span style="color: #2d9574;">()</span><span style="color: #bc6ec5;">)</span>
-    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">boost</span>::optional<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">char</span><span style="color: #bc6ec5;">&gt;(</span>queue.back<span style="color: #2d9574;">()</span><span style="color: #bc6ec5;">)</span>;
-  <span style="color: #4f97d7; font-weight: bold;">else</span>
-    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">boost</span>::optional<span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">char</span><span style="color: #bc6ec5;">&gt;()</span>;
-<span style="color: #4f97d7;">}</span>
+<span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">optional</span><span style="color: #268bd2;">&lt;</span><span style="color: #df005f; font-weight: bold;">char</span><span style="color: #268bd2;">&gt;</span>  <span style="color: #d75fd7; font-weight: bold;">get_async_data</span><span style="color: #268bd2;">(){</span>
+  <span style="color: #268bd2; font-weight: bold;">if</span><span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">!</span>queue.empty<span style="color: #2aa198;">()</span><span style="color: #d75fd7;">)</span>
+    <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">boost</span>::optional<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">char</span><span style="color: #d75fd7;">&gt;(</span>queue.back<span style="color: #2aa198;">()</span><span style="color: #d75fd7;">)</span>;
+  <span style="color: #268bd2; font-weight: bold;">else</span>
+    <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">boost</span>::optional<span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">char</span><span style="color: #d75fd7;">&gt;()</span>;
+<span style="color: #268bd2;">}</span>
 
-<span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #bc6ec5; font-weight: bold;">main</span><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">argc</span>, <span style="color: #ce537a; font-weight: bold;">char</span> *<span style="color: #7590db;">argv</span><span style="color: #bc6ec5;">[]</span><span style="color: #4f97d7;">)</span>
-<span style="color: #4f97d7;">{</span>
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">variant</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">nullptr_t</span>,<span style="color: #ce537a; font-weight: bold;">char</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">v</span>;
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">optional</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">char</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">op</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">op is uninitalized, no char is constructed</span>
-  op=<span style="color: #2d9574;">'A'</span>;                    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">op contains 'A'</span>
+<span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7; font-weight: bold;">main</span><span style="color: #268bd2;">(</span><span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">argc</span>, <span style="color: #df005f; font-weight: bold;">char</span> *<span style="color: #8787d7;">argv</span><span style="color: #d75fd7;">[]</span><span style="color: #268bd2;">)</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">variant</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">nullptr_t</span>,<span style="color: #df005f; font-weight: bold;">char</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">v</span>;
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">optional</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">char</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">op</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">op is uninitalized, no char is constructed</span>
+  op=<span style="color: #2aa198;">'A'</span>;                    <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">op contains 'A'</span>
 
-  op=get_async_data<span style="color: #bc6ec5;">()</span>;
-  <span style="color: #4f97d7; font-weight: bold;">if</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">!</span>op<span style="color: #bc6ec5;">)</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"No data is available"</span>&lt;&lt;endl;
-  <span style="color: #4f97d7; font-weight: bold;">else</span>
-  <span style="color: #bc6ec5;">{</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"op contains: "</span>&lt;&lt;op.get<span style="color: #2d9574;">()</span>&lt;&lt;endl;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">get() will crash if op is uninitialized</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"op contains: "</span>&lt;&lt;*op&lt;&lt;endl;       <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">crash if op is uninitialized</span>
-  <span style="color: #bc6ec5;">}</span>
+  op=get_async_data<span style="color: #d75fd7;">()</span>;
+  <span style="color: #268bd2; font-weight: bold;">if</span><span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">!</span>op<span style="color: #d75fd7;">)</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"No data is available"</span>&lt;&lt;endl;
+  <span style="color: #268bd2; font-weight: bold;">else</span>
+  <span style="color: #d75fd7;">{</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"op contains: "</span>&lt;&lt;op.get<span style="color: #2aa198;">()</span>&lt;&lt;endl;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">get() will crash if op is uninitialized</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"op contains: "</span>&lt;&lt;*op&lt;&lt;endl;       <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">crash if op is uninitialized</span>
+  <span style="color: #d75fd7;">}</span>
 
-  op.reset<span style="color: #bc6ec5;">()</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">reset op uninitialized state</span>
-  cout&lt;&lt;op.get_value_or<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'z'</span><span style="color: #bc6ec5;">)</span>&lt;&lt;endl;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">return 'z' if op is empty</span>
+  op.reset<span style="color: #d75fd7;">()</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">reset op uninitialized state</span>
+  cout&lt;&lt;op.get_value_or<span style="color: #d75fd7;">(</span><span style="color: #2aa198;">'z'</span><span style="color: #d75fd7;">)</span>&lt;&lt;endl;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">return 'z' if op is empty</span>
 
-  <span style="color: #ce537a; font-weight: bold;">char</span>* <span style="color: #7590db;">p</span> =op.get_ptr<span style="color: #bc6ec5;">()</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">return null if op is empty</span>
+  <span style="color: #df005f; font-weight: bold;">char</span>* <span style="color: #8787d7;">p</span> =op.get_ptr<span style="color: #d75fd7;">()</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">return null if op is empty</span>
 
-  <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">optional can store any kind of data</span>
-  <span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #ce537a; font-weight: bold;">A</span><span style="color: #bc6ec5;">{</span><span style="color: #ce537a; font-weight: bold;">string</span> <span style="color: #7590db;">name</span>; <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">value</span>;<span style="color: #bc6ec5;">}</span>;
-  <span style="color: #ce537a; font-weight: bold;">A</span> <span style="color: #7590db;">a</span>;
-  cout&lt;&lt;<span style="color: #2d9574;">"a's name: "</span>&lt;&lt;a.name&lt;&lt;<span style="color: #2d9574;">"a's value: "</span>&lt;&lt;a.value&lt;&lt;endl;
+  <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">optional can store any kind of data</span>
+  <span style="color: #268bd2; font-weight: bold;">struct</span> <span style="color: #df005f; font-weight: bold;">A</span><span style="color: #d75fd7;">{</span><span style="color: #df005f; font-weight: bold;">string</span> <span style="color: #8787d7;">name</span>; <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #8787d7;">value</span>;<span style="color: #d75fd7;">}</span>;
+  <span style="color: #df005f; font-weight: bold;">A</span> <span style="color: #8787d7;">a</span>;
+  cout&lt;&lt;<span style="color: #2aa198;">"a's name: "</span>&lt;&lt;a.name&lt;&lt;<span style="color: #2aa198;">"a's value: "</span>&lt;&lt;a.value&lt;&lt;endl;
 
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">optional</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">A</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">opA0</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">constructor of A is not called</span>
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">optional</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">A</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #bc6ec5; font-weight: bold;">opA</span><span style="color: #bc6ec5;">(</span>a<span style="color: #bc6ec5;">)</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">a is copy constructed into opA</span>
-  cout&lt;&lt;opA-&gt;name&lt;&lt;<span style="color: #2d9574;">" "</span>&lt;&lt;opA-&gt;value&lt;&lt;endl;
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">optional</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">A</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">opA0</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">constructor of A is not called</span>
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">optional</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">A</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #d75fd7; font-weight: bold;">opA</span><span style="color: #d75fd7;">(</span>a<span style="color: #d75fd7;">)</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">a is copy constructed into opA</span>
+  cout&lt;&lt;opA-&gt;name&lt;&lt;<span style="color: #2aa198;">" "</span>&lt;&lt;opA-&gt;value&lt;&lt;endl;
 
-  <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">Pointer</span>
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">optional</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">A</span>*<span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">opAP</span><span style="color: #bc6ec5;">(</span>&amp;a<span style="color: #bc6ec5;">)</span>;
-  <span style="color: #bc6ec5;">(</span>*opAP<span style="color: #bc6ec5;">)</span>-&gt;name=<span style="color: #2d9574;">"Bob"</span>;
+  <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">Pointer</span>
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">optional</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">A</span>*<span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">opAP</span><span style="color: #d75fd7;">(</span>&amp;a<span style="color: #d75fd7;">)</span>;
+  <span style="color: #d75fd7;">(</span>*opAP<span style="color: #d75fd7;">)</span>-&gt;name=<span style="color: #2aa198;">"Bob"</span>;
 
-  <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">Reference</span>
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">optional</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">A</span>&amp;<span style="color: #bc6ec5;">&gt;</span> <span style="color: #bc6ec5; font-weight: bold;">opAR</span><span style="color: #bc6ec5;">(</span>a<span style="color: #bc6ec5;">)</span>;
-  opAR-&gt;name=<span style="color: #2d9574;">"Bob"</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">this changes a.name</span>
+  <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">Reference</span>
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">optional</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">A</span>&amp;<span style="color: #d75fd7;">&gt;</span> <span style="color: #d75fd7; font-weight: bold;">opAR</span><span style="color: #d75fd7;">(</span>a<span style="color: #d75fd7;">)</span>;
+  opAR-&gt;name=<span style="color: #2aa198;">"Bob"</span>;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">this changes a.name</span>
 
-  <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">Relational Operator</span>
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">optional</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">i1</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">)</span>;
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">optional</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">i2</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">9</span><span style="color: #bc6ec5;">)</span>;
-  <span style="color: #a45bad;">boost</span>::<span style="color: #ce537a; font-weight: bold;">optional</span><span style="color: #bc6ec5;">&lt;</span><span style="color: #ce537a; font-weight: bold;">int</span><span style="color: #bc6ec5;">&gt;</span> <span style="color: #7590db;">i3</span>;
-  <span style="color: #4f97d7; font-weight: bold;">if</span><span style="color: #bc6ec5;">(</span>i1&lt;i2<span style="color: #bc6ec5;">)</span>
-    cout&lt;&lt;<span style="color: #2d9574;">"i2 is bigger"</span>&lt;&lt;endl;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">if both are initialized, *i1&lt;*i2, i3 is uninitialized which is samll than the initialized value</span>
+  <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">Relational Operator</span>
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">optional</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">i1</span><span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">1</span><span style="color: #d75fd7;">)</span>;
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">optional</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">i2</span><span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">9</span><span style="color: #d75fd7;">)</span>;
+  <span style="color: #d75fd7;">boost</span>::<span style="color: #df005f; font-weight: bold;">optional</span><span style="color: #d75fd7;">&lt;</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">&gt;</span> <span style="color: #8787d7;">i3</span>;
+  <span style="color: #268bd2; font-weight: bold;">if</span><span style="color: #d75fd7;">(</span>i1&lt;i2<span style="color: #d75fd7;">)</span>
+    cout&lt;&lt;<span style="color: #2aa198;">"i2 is bigger"</span>&lt;&lt;endl;  <span style="color: #008787; background-color: #262626;">// </span><span style="color: #008787; background-color: #262626;">if both are initialized, *i1&lt;*i2, i3 is uninitialized which is samll than the initialized value</span>
 
-  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">0</span>;
-<span style="color: #4f97d7;">}</span>
+  <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #d75fd7;">0</span>;
+<span style="color: #268bd2;">}</span>
 
 </pre>
 </div>
@@ -782,60 +1051,41 @@ z=vector<span style="color: #4f97d7;">&lt;</span><span style="color: #ce537a; fo
 </div>
 </div>
 
-<div id="outline-container-org73980b5" class="outline-2">
-<h2 id="org73980b5"><span class="section-number-2">5</span> Code optimization</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgfb69ab2" class="outline-2">
+<h2 id="orgfb69ab2"><span class="section-number-2">6</span> Code optimization</h2>
 </div>
-<div id="outline-container-orga8d642c" class="outline-3">
-<h3 id="orga8d642c"><span class="section-number-3">5.1</span> Does Register variable have address?</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgac3d273" class="outline-2">
+<h2 id="orgac3d273"><span class="section-number-2">7</span> Hack Technology</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-orgbab14fd" class="outline-3">
+<h3 id="orgbab14fd"><span class="section-number-3">7.1</span> DLL injection</h3>
+<div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+<pre class="src src-"tangle:main.c"lang"tangle:main.c"switches"tangle:main.c"flags">"tangle:main.c"body
+</pre>
+</div>
 <p>
-Q:Is this correct?
+&#x2026;
+Create a "dll" to inject to main program.
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #4f97d7; font-weight: bold;">register</span> <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">c</span>=<span style="color: #a45bad;">3</span>;
-<span style="color: #ce537a; font-weight: bold;">int</span>* <span style="color: #7590db;">pb</span>=&amp;c;
-</pre>
-</div>
-<p>
-A: wrong
-</p>
-</div>
-</div>
-<div id="outline-container-org0b77388" class="outline-3">
-<h3 id="org0b77388"><span class="section-number-3">5.2</span> Stack overflow</h3>
-<div class="outline-text-3" id="text-5-2">
-<div class="org-src-container">
-<pre class="src src-C"><span style="color: #bc6ec5;">#include</span> <span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">stdio.h</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #ce537a; font-weight: bold;">void</span> <span style="color: #bc6ec5; font-weight: bold;">main</span><span style="color: #4f97d7;">()</span>
-<span style="color: #4f97d7;">{</span>
-  <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">a</span><span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1024</span>*<span style="color: #a45bad;">3000</span><span style="color: #bc6ec5;">]</span>;
-  printf<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"%d "</span>,a<span style="color: #2d9574;">[</span><span style="color: #a45bad;">0</span><span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">)</span>;
-<span style="color: #4f97d7;">}</span>
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgec73d58" class="outline-3">
-<h3 id="orgec73d58"><span class="section-number-3">5.3</span> Stack can cause higher CPU  utilization</h3>
-<div class="outline-text-3" id="text-5-3">
-<div class="org-src-container">
-<pre class="src src-C"><span style="color: #bc6ec5;">#include</span><span style="color: #4f97d7;">&lt;</span><span style="color: #2d9574;">stdio.h</span><span style="color: #4f97d7;">&gt;</span>
-<span style="color: #ce537a; font-weight: bold;">void</span> <span style="color: #bc6ec5; font-weight: bold;">main</span><span style="color: #4f97d7;">()</span>
-<span style="color: #4f97d7;">{</span>
-  <span style="color: #4f97d7; font-weight: bold;">while</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">)</span>
-    <span style="color: #bc6ec5;">{</span>
-      <span style="color: #ce537a; font-weight: bold;">double</span> <span style="color: #7590db;">db</span><span style="color: #2d9574;">[</span><span style="color: #a45bad;">1024</span>*<span style="color: #a45bad;">200</span><span style="color: #2d9574;">]</span>;
-    <span style="color: #bc6ec5;">}</span>
-<span style="color: #4f97d7;">}</span>
+<pre class="src src-C"><span style="color: #d75fd7;">#inclue</span>&lt;stdio.h&gt;
+<span style="color: #d75fd7;">#incude</span>&lt;stdlib.h&gt;
+_declspec<span style="color: #268bd2;">(</span>dllexport<span style="color: #268bd2;">)</span> <span style="color: #df005f; font-weight: bold;">void</span> <span style="color: #d75fd7; font-weight: bold;">hack</span><span style="color: #268bd2;">()</span>
+<span style="color: #268bd2;">{</span>
+  <span style="color: #df005f; font-weight: bold;">int</span> <span style="color: #d75fd7;">(</span>*<span style="color: #d75fd7; font-weight: bold;">p</span><span style="color: #d75fd7;">)(</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #d75fd7;">)</span>= <span style="color: #d75fd7;">(</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #2aa198;">(</span>*<span style="color: #2aa198;">)(</span><span style="color: #df005f; font-weight: bold;">int</span><span style="color: #2aa198;">)</span><span style="color: #d75fd7;">)</span><span style="color: #d75fd7;">0x55620798e6a0</span>; <span style="color: #008787; background-color: #262626;">//</span><span style="color: #008787; background-color: #262626;">the address of "add" function</span>
+  p<span style="color: #d75fd7;">(</span><span style="color: #d75fd7;">10</span><span style="color: #d75fd7;">)</span>;
+<span style="color: #268bd2;">}</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org9005c17" class="outline-2">
-<h2 id="org9005c17"><span class="section-number-2">6</span> reference</h2>
-<div class="outline-text-2" id="text-6">
+
+<div id="outline-container-orga971456" class="outline-2">
+<h2 id="orga971456"><span class="section-number-2">8</span> reference</h2>
+<div class="outline-text-2" id="text-8">
 <ol class="org-ol">
 <li><a href="http://boqian.weebly.com/">boqian's space</a></li>
 </ol>
@@ -844,7 +1094,7 @@ A: wrong
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yubao</p>
-<p class="date">Created: 2017-11-29 Wed 08:53</p>
+<p class="date">Created: 2017-12-07 Thu 09:01</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
