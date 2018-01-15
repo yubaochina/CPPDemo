@@ -7,3 +7,4 @@ include_common
 
 add_subdirectory(win_udp_client)
 add_subdirectory(win_udp_server)
+add_subdirectory(windowsService)
